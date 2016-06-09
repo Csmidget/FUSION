@@ -11,20 +11,22 @@ public class Tilemap : MonoBehaviour {
      * */
 
     int m_height, m_width;
+    float m_tileOffset;
 
 	void Start ()
     {
         m_height = 8;
-        m_width = 14;
+        m_width = 15;
+        m_tileOffset = 0.5f;
 
         GenerateMap();  //call method
 	}
 
     void GenerateMap()
     {
-        for (int y = 0; y < m_height; y++)
+        for (float y = 0; y < m_height; y+= m_tileOffset)
         {
-            for (int x = 0; x < m_width; x++)
+            for (float x = 0; x < m_width; x+= m_tileOffset)
             {
                 GameObject obj = ObjectPooler.m_current.GetPooledObject();
 

@@ -6,7 +6,7 @@ public class ObjectPooler : MonoBehaviour {
 
     public static ObjectPooler m_current;
     public GameObject m_pooledObject;
-    public int m_pooledAmount = 112;
+    public int m_pooledAmount = 150;
     public bool m_willGrow = false;
 
     List<GameObject> m_pooledObjects;

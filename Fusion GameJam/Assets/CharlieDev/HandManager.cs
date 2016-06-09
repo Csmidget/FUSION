@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿
+
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,7 +17,7 @@ public class HandManager : MonoBehaviour {
 
 		cards = new List<Card>();
 		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
-		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
+		cards.Add (CardController.instance.GetCardCopy("Spear"));
 		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
 		SortHand ();
 	}

@@ -42,6 +42,9 @@ public class Card {
 			case "name":
 				c.GetComponent<TextMesh> ().text = name;
 				break;
+			case "desc":
+				c.GetComponent<TextMesh> ().text = _cardText;
+				break;
 			}
 		}
 

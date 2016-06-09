@@ -36,9 +36,21 @@ public class CardController : MonoBehaviour {
 				cardPrefab,
 				"CaveMan",
 				SpriteController.instance.GetSprite("CaveMan"),
-				"THIS IS CAVEMAN, UGG",
+				"THIS IS CAVEMAN,\n UGG",
 				true
 			));
+
+		cardDictionary.Add(
+			"Spear",
+			new Card(
+				cardPrefab,
+				"Spear",
+				SpriteController.instance.GetSprite("Spear"),
+				"THIS IS SPEAR,\n UGG",
+				true
+			));
+
+
 		Debug.Log (cardDictionary.Count);	
 	}
 

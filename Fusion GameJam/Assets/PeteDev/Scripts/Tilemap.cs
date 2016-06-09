@@ -9,8 +9,6 @@ public class Tilemap : MonoBehaviour {
      * 
      * Position camera at 6.5, 3.5, -10
      * */
-    [SerializeField]
-    GameObject m_tile;
 
     int m_height, m_width;
 
@@ -37,8 +35,8 @@ public class Tilemap : MonoBehaviour {
 
                 obj.transform.position = new Vector2(x, y);
                 obj.transform.rotation = transform.rotation;
-                obj.transform.SetParent(gameObject.transform);
                 obj.SetActive(true);
+                obj.transform.SetParent(gameObject.transform);
             }
         }
     }

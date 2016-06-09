@@ -3,20 +3,13 @@ using System.Collections;
 
 public class Tilemap : MonoBehaviour {
 
-    /*
-     *  For loop X and Y to make the tile map
-     *  
-     * 
-     * Position camera at 6.5, 3.5, -10
-     * */
-
     int m_height, m_width;
     float m_tileOffset;
 
 	void Start ()
     {
-        m_height = 8;
-        m_width = 15;
+        m_height = 16;
+        m_width = 30;
         m_tileOffset = 0.5f;
 
         GenerateMap();  //call method
@@ -24,9 +17,17 @@ public class Tilemap : MonoBehaviour {
 
     void GenerateMap()
     {
-        for (float y = 0; y < m_height; y+= m_tileOffset)
+
+    }
+
+    /*void GenerateMap()
+    {
+        GameObject cur_cell;
+        GameObject other_cell;
+
+        for (float y = 0; y < m_height; y++)
         {
-            for (float x = 0; x < m_width; x+= m_tileOffset)
+            for (float x = 0; x < m_width; x++)
             {
                 GameObject obj = ObjectPooler.m_current.GetPooledObject();
 
@@ -35,11 +36,12 @@ public class Tilemap : MonoBehaviour {
                     return;
                 }
 
-                obj.transform.position = new Vector2(x, y);
+                obj.transform.position = new Vector2((x * m_tileOffset) + (m_tileOffset / 2), (y * m_tileOffset) - (m_tileOffset / 2));
                 obj.transform.rotation = transform.rotation;
-                obj.SetActive(true);
                 obj.transform.SetParent(gameObject.transform);
+                obj.GetComponentInChildren<Tile>().SetTileType(Random.Range(0, 4));
+                obj.SetActive(true);
             }
         }
-    }
+    }*/
 }

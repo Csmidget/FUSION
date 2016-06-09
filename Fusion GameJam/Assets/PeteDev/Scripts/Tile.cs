@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
 
@@ -10,14 +11,23 @@ public class Tile : MonoBehaviour {
     [SerializeField]
     GameObject m_occupant;
 
-	void Start ()
+    public Sprite[] m_sprites;
+    SpriteRenderer m_spriteRendChild;
+
+    GameObject m_top;
+    GameObject m_bottom;
+    GameObject m_left;
+    GameObject m_right;
+
+    GameObject m_topRight;
+    GameObject m_topLeft;
+    GameObject m_bottomRight;
+    GameObject m_bottomLeft;
+    
+
+	void Awake ()
     {
-	    
-	}
-	
-	void Update ()
-    {
-	    
+        m_spriteRendChild = GetComponentInChildren<SpriteRenderer>();
 	}
 
     //needs to be called when the tile is clicked
@@ -28,6 +38,78 @@ public class Tile : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    public void SetCellNeighbour(int _position, GameObject _neighbour)
+    {
+        //top
+        if(_position == 0)
+        {
+            m_top = _neighbour;
+        }
+        //bottom
+        if (_position == 1)
+        {
+            m_bottom = _neighbour;
+        }
+        //left
+        if (_position == 2)
+        {
+            m_left = _neighbour;
+        }
+        //right
+        if (_position == 3)
+        {
+            m_right = _neighbour;
+        }
+
+        //top left
+        if (_position == 4)
+        {
+            m_topLeft = _neighbour;
+        }
+        //bottom right
+        if (_position == 5)
+        {
+            m_bottomRight = _neighbour;
+        }
+        //top right
+        if (_position == 6)
+        {
+            m_topRight = _neighbour;
+        }
+        //bottom left
+        if (_position == 7)
+        {
+            m_bottomLeft = _neighbour;
+        }
+    }
+
+    public void SetTileType(int _type)
+    {
+        m_spriteRendChild.sprite = m_sprites[_type];
+
+        //types will have movement costs
+        if (_type == 0)
+        {
+            //grass
+            
+        }
+        if (_type == 1)
+        {
+            //hill
+
+        }
+        if (_type == 2)
+        {
+            //forest
+
+        }
+        if (_type == 3)
+        {
+            //mountain
+
+        }
     }
 
     //if mouse is pressed on tile

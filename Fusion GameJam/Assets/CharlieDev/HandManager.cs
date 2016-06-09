@@ -6,15 +6,16 @@ public class HandManager : MonoBehaviour {
 
 
 	public GameObject cardPrefab;
-	List<GameObject> cards;
+	List<Card> cards;
 	public float cardSpacing = 1.5f;
 
 	// Use this for initialization
 	void Start () {
 
-		cards = new List<GameObject>();
-
-		cards.Add (Instantiate (cardPrefab) as GameObject);
+		cards = new List<Card>();
+		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
+		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
+		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
 		SortHand ();
 	}
 
@@ -25,9 +26,9 @@ public class HandManager : MonoBehaviour {
 		for (int i = 0; i < cardCount; i++) 
 		{
 			//Transform pos = cards[i].GetComponent<Transform>();
-			Vector2 pos = new Vector2 (-(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), transform.position.y);
+			Vector3 pos = new Vector3 (-(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), transform.position.y,-80 + i*3);
 		
-			cards [i].transform.position = pos;
+			cards [i].CardObjectTransform.position = pos;
 			Debug.Log ("Updated card");
 		}
 	}

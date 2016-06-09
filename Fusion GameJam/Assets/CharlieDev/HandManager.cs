@@ -16,10 +16,17 @@ public class HandManager : MonoBehaviour {
 	void Start () {
 
 		cards = new List<Card>();
-		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
-		cards.Add (CardController.instance.GetCardCopy("Spear"));
-		cards.Add (CardController.instance.GetCardCopy("CaveMan"));
+		AddCard ("CaveMan");
+		AddCard ("Spear");
+		AddCard ("CaveMan");
 		SortHand ();
+	}
+
+	void AddCard(string cardname)
+	{
+		Card newCard = CardController.instance.GetCardCopy (cardname);
+		newCard.CardObjectTransform.parent = this.transform;
+		cards.Add (newCard);
 	}
 
 	void SortHand()

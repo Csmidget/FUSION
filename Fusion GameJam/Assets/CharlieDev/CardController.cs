@@ -34,20 +34,32 @@ public class CardController : MonoBehaviour {
 			"CaveMan",
 			new Card(
 				cardPrefab,
+				CardType.Base,
+				SubType.Unit,
 				"CaveMan",
 				SpriteController.instance.GetSprite("CaveMan"),
 				"THIS IS CAVEMAN,\n UGG",
-				true
+				true,
+				1,
+				1,
+				2,
+				2
 			));
 
 		cardDictionary.Add(
 			"Spear",
 			new Card(
 				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
 				"Spear",
 				SpriteController.instance.GetSprite("Spear"),
 				"THIS IS SPEAR,\n UGG",
-				true
+				true,
+				1,
+				0,
+				4,
+				0
 			));
 
 
@@ -63,7 +75,7 @@ public class CardController : MonoBehaviour {
 
 		if (cardDictionary.ContainsKey (_cardName)) {
 			Card currentCard = cardDictionary [_cardName];
-			Card newCard = new Card (currentCard.Prefab, currentCard.Name, currentCard.CardImage, currentCard.CardText,false);
+			Card newCard = currentCard.MakeCopy ();
 			return newCard;
 		} 
 		else 

@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: HoverCard
+    uniqueID: 313930965
+    locked: 0

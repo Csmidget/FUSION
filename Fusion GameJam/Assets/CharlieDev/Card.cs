@@ -9,7 +9,7 @@ public class Card {
 
 
 
-	public Card(string name, string desc, )
+	public Card(string name, string desc )
 	{
 		
 	}

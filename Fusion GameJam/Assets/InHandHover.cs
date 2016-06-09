@@ -24,7 +24,7 @@ public class InHandHover : MonoBehaviour {
 		{
 			sr.sortingLayerName= "HoverCard";
 		}
-		transform.Translate(new Vector2(0,2));
+		transform.Translate(new Vector2(0,1.1f));
 	}
 
 	void OnMouseExit(){
@@ -32,6 +32,6 @@ public class InHandHover : MonoBehaviour {
 		{
 			sr.sortingLayerName= "Default";
 		}
-		transform.Translate (new Vector2 (0, -2));
+		transform.Translate (new Vector2 (0, -1.1f));
 	}
 }

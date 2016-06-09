@@ -15,15 +15,6 @@ public class HandManager : MonoBehaviour {
 		cards = new List<GameObject>();
 
 		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-		cards.Add (Instantiate (cardPrefab) as GameObject);
-
 		SortHand ();
 	}
 
@@ -34,7 +25,7 @@ public class HandManager : MonoBehaviour {
 		for (int i = 0; i < cardCount; i++) 
 		{
 			//Transform pos = cards[i].GetComponent<Transform>();
-			Vector2 pos = new Vector2 (-((cardCount / 2) * cardSpacing) + (i * cardSpacing), transform.position.y);
+			Vector2 pos = new Vector2 (-(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), transform.position.y);
 		
 			cards [i].transform.position = pos;
 			Debug.Log ("Updated card");

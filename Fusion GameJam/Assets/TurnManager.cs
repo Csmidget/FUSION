@@ -27,10 +27,10 @@ public class TurnManager : MonoBehaviour {
 		{
 			if (HandManager.instance.currHand.cards.Count < 10)
 			{
-				if (HandManager.instance.numBases < 1) 
+				if (HandManager.instance.currHand.numBases < 1) 
 					HandManager.instance.PushCard (CardController.instance.GetRandomBase ());				
 				else 
-					if ((HandManager.instance.numModifiers < 2))
+					if ((HandManager.instance.currHand.numModifiers < 2))
 						HandManager.instance.PushCard (CardController.instance.GetRandomModifier ());					
 				else
 						HandManager.instance.PushCard(CardController.instance.GetRandomCard());
@@ -38,6 +38,8 @@ public class TurnManager : MonoBehaviour {
 			}
 		}
 		SwitchPlayer ();
+		currPlayer.UpdateResources();
+		UnitManager.m_instance.RefreshUnits ();
 	}
 
 	void SwitchPlayer()

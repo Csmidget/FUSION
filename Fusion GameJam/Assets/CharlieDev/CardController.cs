@@ -120,7 +120,9 @@ public class CardController : MonoBehaviour {
 				1,
 				1,
 				2,
-				2
+				2,
+				1,
+				0
 			));
 
 		cardDictionary.Add(
@@ -137,6 +139,8 @@ public class CardController : MonoBehaviour {
 				"Speary",
 				1,
 				1,
+				1,
+				0,
 				1,
 				0
 			));
@@ -155,6 +159,8 @@ public class CardController : MonoBehaviour {
 				1,
 				2,
 				0,
+				0,
+				1,
 				0
 			));
 		cardDictionary.Add(
@@ -172,7 +178,10 @@ public class CardController : MonoBehaviour {
 				0,
 				3,
 				0,
-				0
+				0,
+				1,
+				1
+
 			));
 		cardDictionary.Add(
 			"Goat",
@@ -187,7 +196,9 @@ public class CardController : MonoBehaviour {
 				1,
 				0,
 				3,
-				3
+				3,
+				1,
+				0
 			));
 		cardDictionary.Add(
 			"Hunting Camp",
@@ -202,7 +213,9 @@ public class CardController : MonoBehaviour {
 				2,
 				0,
 				3,
-				0
+				0,
+				1,
+				1
 			));
 		cardDictionary.Add(
 			"Oracles Hut",
@@ -217,6 +230,8 @@ public class CardController : MonoBehaviour {
 				2,
 				0,
 				3,
+				0,
+				1,
 				0
 			));
 		cardDictionary.Add(
@@ -232,7 +247,9 @@ public class CardController : MonoBehaviour {
 				3,
 				0,
 				30,
-				0
+				0,
+				0,
+				4
 			));
 
 		Debug.Log (cardDictionary.Count);	

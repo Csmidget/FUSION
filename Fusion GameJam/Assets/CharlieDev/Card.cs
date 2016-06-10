@@ -23,6 +23,8 @@ public class Card {
 	protected int attack;
 	protected int defence;
 	protected int speed;
+	protected int resourceCost;
+	protected int resourceGen;
 
 	string structurePrefix;
 	string unitPrefix;
@@ -38,6 +40,8 @@ public class Card {
 		attack 	= 	baseCard.Attack;
 		defence = 	baseCard.Defence;
 		speed 	= 	baseCard.Speed;
+		resourceCost = baseCard.ResourceCost;
+		resourceGen = baseCard.ResourceGen;
 		prefabCard = false;
 		string prefix1;
 		string prefix2;
@@ -103,7 +107,7 @@ public class Card {
 
 
 
-	public Card(GameObject _prefab,CardType _type,SubType _subType, string _name, Sprite _cardImage, string _cardText,bool _prefabCard,int _range,int _attack,int _defence,int _speed)
+	public Card(GameObject _prefab,CardType _type,SubType _subType, string _name, Sprite _cardImage, string _cardText,bool _prefabCard,int _range,int _attack,int _defence,int _speed,int _resourceCost, int _resourceGen)
 	{
 		inHand = true;
 		inFuser = false;
@@ -118,7 +122,8 @@ public class Card {
 		attack = _attack;
 		defence = _defence;
 		speed = _speed;
-
+		resourceCost = _resourceCost;
+		resourceGen = _resourceGen;
 		if (prefabCard)
 			cardObject = prefab;
 		else {
@@ -140,7 +145,7 @@ public class Card {
 
 	}
 
-	public Card (GameObject _prefab, CardType _type, SubType _subType, string _name, Sprite _cardImage, string _cardText, bool _prefabCard,string _structurePrefix,string _unitPrefix, int _range,int _attack,int _defence,int _speed) 
+	public Card (GameObject _prefab, CardType _type, SubType _subType, string _name, Sprite _cardImage, string _cardText, bool _prefabCard,string _structurePrefix,string _unitPrefix, int _range,int _attack,int _defence,int _speed,int _resourceCost, int _resourceGen) 
 	{
 		Debug.Log ("SPESHUL CONSTRUCTOR");
 		inHand = true;
@@ -156,7 +161,8 @@ public class Card {
 		attack = _attack;
 		defence = _defence;
 		speed = _speed;
-
+		resourceCost = _resourceCost;
+		resourceGen = _resourceGen;
 		if (prefabCard)
 			cardObject = prefab;
 		else {
@@ -181,7 +187,7 @@ public class Card {
 	}
 	public Card MakeCopy()
 	{
-		Card newCard = new Card (prefab, cardType, subType, name, cardImage, cardText, false, range, attack, defence, speed);
+		Card newCard = new Card (prefab, cardType, subType, name, cardImage, cardText, false, range, attack, defence, speed,resourceCost,resourceGen);
 
 		if (unitPrefix != null) {
 			newCard.UnitPrefix = unitPrefix;
@@ -351,6 +357,24 @@ public class Card {
 		set {
 			speed = value;
 			UpdateCardObject ();
+		}
+	}
+
+	public int ResourceCost {
+		get {
+			return resourceCost;
+		}
+		set {
+			resourceCost = value;
+		}
+	}
+
+	public int ResourceGen {
+		get {
+			return resourceGen;
+		}
+		set {
+			resourceGen = value;
 		}
 	}
 }

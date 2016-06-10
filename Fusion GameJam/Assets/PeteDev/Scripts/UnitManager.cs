@@ -8,6 +8,8 @@ public class UnitManager : MonoBehaviour
 	public GameObject m_indicatorprefab;
 	public GameObject m_enemyIndicatorPrefab;
 
+	public GameObject endTurnButton;
+
 	public bool m_isInPlacement;
 	public List<Unit> m_units;
 	List<GameObject> placementIndicatorList;
@@ -24,6 +26,13 @@ public class UnitManager : MonoBehaviour
 		}
 	}
 
+	public void RefreshUnits()
+	{
+		foreach (Unit u in m_units)
+		{
+			u.hasActed = false;
+		}
+	}
 
 
 	public Unit CreateTownCentre(Tile homeTile, Player owner)
@@ -79,7 +88,8 @@ public class UnitManager : MonoBehaviour
 		newUnit.m_tile = _tile;
 		CardFuser.instance.fusedCard = null;
 		this.m_isInPlacement = false;
-		HandManager.instance.gameObject.SetActive (true);
+		HandManager.instance.currHand.gameObject.SetActive (true);
+		endTurnButton.SetActive (true);
 		m_units.Add (newUnit);
 		TurnManager.instance.currPlayer.ownedUnits.Add (newUnit);
 		foreach (GameObject go in placementIndicatorList) {

@@ -13,8 +13,7 @@ public class HandManager : MonoBehaviour {
 	public Hand currHand;
 
 	public float cardSpacing = 1.5f;
-	public int numBases;
-	public int numModifiers;
+
 
 	void Awake()
 	{
@@ -59,9 +58,9 @@ public class HandManager : MonoBehaviour {
 		newCard.CardObjectTransform.parent = currHand.transform;
 		currHand.cards.Add (newCard);
 		if (newCard.GetCardType == CardType.Base)
-			numBases++;
+			currHand.numBases++;
 		else
-			numModifiers++;
+			currHand.numModifiers++;
 	}
 
 	public void PushCard(Card _card)
@@ -72,9 +71,9 @@ public class HandManager : MonoBehaviour {
 		_card.InHand = true;
 		SortHand ();
 		if (_card.GetCardType == CardType.Base)
-			numBases++;
+			currHand.numBases++;
 		else
-			numModifiers++;
+			currHand.numModifiers++;
 	}
 
 	public void RemoveCard(Card _card)
@@ -86,9 +85,9 @@ public class HandManager : MonoBehaviour {
 			_card.InHand = false;
 			SortHand ();
 			if (_card.GetCardType == CardType.Base)
-				numBases--;
+				currHand.numBases--;
 			else
-				numModifiers--;
+				currHand.numModifiers--;
 		}
 	}
 

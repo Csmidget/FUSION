@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
 	//needs to edit the stats of the basecard when an event happens, such as health when attacked
 
 	//public GameObject m_tileRef;
-
+	public bool hasActed;
 	List<Tile> validTiles;
 	List<Tile> enemyTiles;
 	List<GameObject> travelIndicatorList;
@@ -24,6 +24,7 @@ public class Unit : MonoBehaviour
 		enemyTiles = new List<Tile> ();
 		travelIndicatorList = new List<GameObject> ();
 		enemyIndicatorList = new List<GameObject> ();
+		hasActed = true;
 	}
 
 	void Update ()
@@ -36,7 +37,7 @@ public class Unit : MonoBehaviour
 		m_cardStats.GetCardMover.targetLoc = cardRevealLoc.position;
 		m_cardStats.CardObject.SetActive (true);
 
-		if(TurnManager.instance.currPlayer.ownedUnits.Contains(this))
+		if(TurnManager.instance.currPlayer.ownedUnits.Contains(this) && hasActed == false)
 			{
 		//MoveUnit ();
 		CheckTiles();
@@ -78,7 +79,7 @@ public class Unit : MonoBehaviour
 						transform.SetParent (validTiles [i].transform);
 						m_tile = validTiles [i];
 						transform.localPosition = new Vector3 (0, 0, -1);
-
+						hasActed = true;
 					}
 				}
 			}
@@ -88,6 +89,7 @@ public class Unit : MonoBehaviour
 					if (enemyTiles [i].m_col2D.OverlapPoint (mousePosition)) 
 					{
 						enemyTiles [i].m_occupant.TakeDamage(m_cardStats.Attack);
+						hasActed = true;
 						break;
 					}
 				}

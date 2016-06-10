@@ -112,11 +112,4 @@ public class Tilemap : MonoBehaviour {
         }
 		this.GetComponent<CameraPan> ().ResetCam ();
     }
-
-    //used to update after a card is placed; checks for new buildings, placeable tiles etc
-    void RecalulateMap()
-    {
-		//iterate through the tiles, add structures to a list, provided they aren't already in there
-
-    }
 }

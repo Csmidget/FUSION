@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+
+public enum TileType{Grass = 0,Hill = 1,Forest = 2,Mountain = 3}
 
 public class Tile : MonoBehaviour {
 
@@ -8,7 +10,7 @@ public class Tile : MonoBehaviour {
     // - when card is selected, and tile is clicked, assign selected card as occupant
 
     [SerializeField]
-    Unit m_occupant;
+    public Unit m_occupant;
 
     public Sprite[] m_sprites;
     public SpriteRenderer m_spriteRendChild;
@@ -23,7 +25,9 @@ public class Tile : MonoBehaviour {
     public Tile m_bottomRight;
     public Tile m_bottomLeft;
 
-    Collider2D m_col2D;
+	int m_tileType;
+
+    public Collider2D m_col2D;
 
     //for movement costs, units can have a passive bonus that increases/decreases their
     //movement speed based on the terrain they are on
@@ -31,6 +35,11 @@ public class Tile : MonoBehaviour {
     {
         m_spriteRendChild = GetComponentInChildren<SpriteRenderer>();
         m_col2D = GetComponent<Collider2D>();
+	}
+
+	void Start()
+	{
+		//m_tileType = 0;
 	}
 
     //needs to be called when the tile is clicked
@@ -96,38 +105,35 @@ public class Tile : MonoBehaviour {
     public void SetTileType(int _type)
     {
         m_spriteRendChild.sprite = m_sprites[_type];
+		m_tileType = _type;
 
         //types will have movement costs
         if (_type == 0)
         {
             //grass
-            
         }
         if (_type == 1)
         {
             //hill
-
         }
         if (_type == 2)
         {
             //forest
-
         }
         if (_type == 3)
         {
             //mountain
-
         }
     }
+
+	public float GetTileType()
+	{
+		return m_tileType;
+	}
 
     public void SetTilePosition(float x, float y)
     {
         transform.position = new Vector2(x, y);
-    }
-
-    void Update()
-    {
-       // GetClickedTile();
     }
 
 	public void CheckTiles(int distanceAway)
@@ -146,7 +152,27 @@ public class Tile : MonoBehaviour {
 				GetNeighbour (i).CheckTiles (distanceAway);
 			}
 		}
+	}
 
+	public void CheckMovement(int distanceAway, List<Tile> tileList)
+	{
+		if (distanceAway <= 0)
+			return;
+				
+		for (int i = 0; i <= 7; i++) {
+			if (GetNeighbour (i) != null) {
+
+				Tile tempTile = GetNeighbour (i);
+				if (!tempTile.IsOccupied () && tempTile.GetTileType () != 3) {
+					if(!tileList.Contains (tempTile))
+						tileList.Add (tempTile);
+					tempTile.CheckMovement (distanceAway - 1, tileList);
+				}
+				//	if(tileList.Contains(tempTile)
+					
+				
+			}
+		}
 	}
 
 	void OnMouseDown()
@@ -158,6 +184,7 @@ public class Tile : MonoBehaviour {
 				//TODO mountains
 				if (!IsOccupied ()) {
 					m_occupant = UnitManager.m_instance.PlaceUnit (this);
+					Debug.Log ("Tile Type: " + GetTileType ());
 				}
 			}
 

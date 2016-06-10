@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class UnitManager : MonoBehaviour
 {
 	public GameObject m_unitPrefab;
-	public GameObject m_placementindicatorprefab;
+	public GameObject m_indicatorprefab;
 
 
 	public bool m_isInPlacement;
@@ -32,6 +32,7 @@ public class UnitManager : MonoBehaviour
 		newUnit.M_cardStats = CardController.instance.GetCardCopy ("Town Centre");
 		newUnit.M_cardStats.CardObject.SetActive (false);
 		newUnit.m_tile = homeTile;
+		newUnit.m_tile.m_occupant = newUnit;
 		m_units.Add (newUnit);
 		return newUnit;
 	}
@@ -58,7 +59,7 @@ public class UnitManager : MonoBehaviour
 		}
 
 		foreach (Tile t in validTiles) {
-			placementIndicatorList.Add((GameObject)Instantiate(m_placementindicatorprefab,t.transform.position,Quaternion.identity));
+			placementIndicatorList.Add((GameObject)Instantiate(m_indicatorprefab,t.transform.position,Quaternion.identity));
 		}
 	}
 

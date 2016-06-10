@@ -220,7 +220,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -246,7 +246,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -272,7 +272,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -298,7 +298,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -324,7 +324,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -363,7 +363,7 @@ TextMesh:
   m_GameObject: {fileID: 182714}
   m_Text: Does Research
   m_OffsetZ: 0
-  m_CharacterSize: 0.18
+  m_CharacterSize: 0.05
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1
@@ -371,7 +371,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -384,7 +384,7 @@ TextMesh:
   m_GameObject: {fileID: 172470}
   m_Text: 3
   m_OffsetZ: 0
-  m_CharacterSize: 0.3
+  m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1
@@ -392,7 +392,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -405,7 +405,7 @@ TextMesh:
   m_GameObject: {fileID: 140126}
   m_Text: Base
   m_OffsetZ: 0
-  m_CharacterSize: 0.18
+  m_CharacterSize: 0.05
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1
@@ -413,7 +413,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -426,7 +426,7 @@ TextMesh:
   m_GameObject: {fileID: 199846}
   m_Text: 0
   m_OffsetZ: 0
-  m_CharacterSize: 0.3
+  m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1
@@ -434,7 +434,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -447,15 +447,15 @@ TextMesh:
   m_GameObject: {fileID: 120508}
   m_Text: Oracles Hut
   m_OffsetZ: 0
-  m_CharacterSize: 0.19
+  m_CharacterSize: 0.06
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
-  m_TabSize: 4
+  m_TabSize: 2
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 98a73a516f714874b83fd870ad7744c5, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295

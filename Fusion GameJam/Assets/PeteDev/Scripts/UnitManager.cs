@@ -59,7 +59,9 @@ public class UnitManager : MonoBehaviour
 		}
 
 		foreach (Tile t in validTiles) {
-			placementIndicatorList.Add((GameObject)Instantiate(m_indicatorprefab,t.transform.position,Quaternion.identity));
+			GameObject go = (GameObject)Instantiate (m_indicatorprefab, t.transform.position, Quaternion.identity);
+			go.transform.parent = t.transform;
+			placementIndicatorList.Add(go);
 		}
 	}
 

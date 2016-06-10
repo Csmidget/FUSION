@@ -35,7 +35,10 @@ public class Unit : MonoBehaviour
 		//MoveUnit ();
 		CheckTiles();
 		foreach (Tile t in validTiles) {
-			travelIndicatorList.Add((GameObject)Instantiate(UnitManager.m_instance.m_indicatorprefab,t.transform.position,Quaternion.identity));
+			GameObject go = (GameObject)Instantiate (UnitManager.m_instance.m_indicatorprefab, t.transform.position, Quaternion.identity);
+			go.transform.parent = t.transform;
+			travelIndicatorList.Add(go);
+			//travelIndicatorList [travelIndicatorList.Count - 1].transform.SetParent (t.transform);
 		}
 	}
 

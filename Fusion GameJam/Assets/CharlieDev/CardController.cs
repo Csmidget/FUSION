@@ -28,43 +28,7 @@ public class CardController : MonoBehaviour {
 		
 	}
 
-	void CreateCards()
-	{
-		cardDictionary.Add(
-			"CaveMan",
-			new Card(
-				cardPrefab,
-				CardType.Base,
-				SubType.Unit,
-				"CaveMan",
-				SpriteController.instance.GetSprite("CaveMan"),
-				"THIS IS CAVEMAN,\n UGG",
-				true,
-				1,
-				1,
-				2,
-				2
-			));
 
-		cardDictionary.Add(
-			"Spear",
-			new Card(
-				cardPrefab,
-				CardType.Modifier,
-				SubType.Tool,
-				"Spear",
-				SpriteController.instance.GetSprite("Spear"),
-				"THIS IS SPEAR,\n UGG",
-				true,
-				1,
-				0,
-				4,
-				0
-			));
-
-
-		Debug.Log (cardDictionary.Count);	
-	}
 
 
 	public Card GetCardCopy(string _cardName)
@@ -88,5 +52,123 @@ public class CardController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void CreateCards()
+	{
+		cardDictionary.Add(
+			"CaveMan",
+			new Card(
+				cardPrefab,
+				CardType.Base,
+				SubType.Unit,
+				"CaveMan",
+				SpriteController.instance.GetSprite("CaveMan"),
+				"THIS IS CAVEMAN,\n UGG",
+				true,
+				1,
+				1,
+				2,
+				2
+			));
+
+		cardDictionary.Add(
+			"Spear",
+			new Modifier(
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Spear",
+				SpriteController.instance.GetSprite("Spear"),
+				"+1 Range \n+1 Damage\n+1 Defence",
+				true,
+				"Spiky",
+				"Speary",
+				1,
+				1,
+				1,
+				0
+			));
+		cardDictionary.Add(
+			"Bow",
+			new Modifier(
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Bow",
+				SpriteController.instance.GetSprite("Bow"),
+				"+1 Range \n+2 Damage",
+				true,
+				"Archery",
+				"Archer",
+				1,
+				2,
+				0,
+				0
+			));
+		cardDictionary.Add(
+			"Club",
+			new Modifier(
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Club",
+				SpriteController.instance.GetSprite("Club"),
+				"+1 Range \n+2 Damage",
+				true,
+				"Defended",
+				"Clubby",
+				1,
+				2,
+				0,
+				0
+			));
+		cardDictionary.Add(
+			"Goat",
+			new Card(
+				cardPrefab,
+				CardType.Base,
+				SubType.Unit,
+				"Goat",
+				SpriteController.instance.GetSprite("Goat"),
+				"This goat makes \n a meat shield",
+				true,
+				1,
+				0,
+				3,
+				3
+			));
+		cardDictionary.Add(
+			"Hunting Camp",
+			new Card(
+				cardPrefab,
+				CardType.Base,
+				SubType.Structure,
+				"Hunting Camp",
+				SpriteController.instance.GetSprite("StoneAgeHut"),
+				"Gathers Resources",
+				true,
+				0,
+				0,
+				3,
+				0
+			));
+		cardDictionary.Add(
+			"Oracles Hut",
+			new Card(
+				cardPrefab,
+				CardType.Base,
+				SubType.Structure,
+				"Oracles Hut",
+				SpriteController.instance.GetSprite("StoneAgeHut2"),
+				"Does Research",
+				true,
+				0,
+				0,
+				3,
+				0
+			));
+
+		Debug.Log (cardDictionary.Count);	
 	}
 }

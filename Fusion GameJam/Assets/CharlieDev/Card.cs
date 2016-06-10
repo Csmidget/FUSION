@@ -6,6 +6,7 @@ public enum SubType {Structure,Unit,Tool,Material};
 
 public class Card {
 
+	protected bool inHand;
 	protected CardType cardType;
 	protected SubType subType;
 	protected GameObject cardObject;
@@ -24,6 +25,7 @@ public class Card {
 
 	public Card(GameObject _prefab,CardType _type,SubType _subType, string _name, Sprite _cardImage, string _cardText,bool _prefabCard,int _range,int _attack,int _defence,int _speed)
 	{
+		inHand = true;
 		cardType = _type;
 		subType = _subType;
 		prefab = _prefab;
@@ -40,6 +42,8 @@ public class Card {
 			cardObject = prefab;
 		else {
 			cardObject = GameObject.Instantiate (prefab);
+			cardObject.GetComponent<CardOnClick> ().thisCard = this;
+			cardObject.GetComponent<InHandHover> ().thisCard = this;
 			Debug.Log ("card made");
 			
 		}
@@ -65,6 +69,12 @@ public class Card {
 				break;
 			case "type":
 				c.GetComponent<TextMesh> ().text = cardType.ToString();
+				break;
+			case "defence":
+				c.GetComponent<TextMesh> ().text = defence.ToString ();
+				break;
+			case "attack":
+				c.GetComponent<TextMesh> ().text = attack.ToString ();
 				break;
 			}
 		}
@@ -124,6 +134,15 @@ public class Card {
 	public SubType GetSubType {
 		get {
 			return subType;
+		}
+	}
+		
+	public bool InHand {
+		get {
+			return inHand;
+		}
+		set {
+			inHand = value;
 		}
 	}
 }

@@ -3,13 +3,12 @@ using System.Collections;
 
 public class CardOnClick : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public Card thisCard;
+
+	void OnMouseDown()
+	{
+		if (thisCard.GetCardType == CardType.Base && thisCard.InHand)
+			CardFuser.instance.ChangeBase (thisCard);
+			
 	}
 }

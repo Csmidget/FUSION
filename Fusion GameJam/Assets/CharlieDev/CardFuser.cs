@@ -21,25 +21,28 @@ public class CardFuser : MonoBehaviour {
 			Destroy (this);
 			Debug.Log ("CardFuser instance already exists");
 		}
-
-		foreach (GameObject c in transform) {
-			switch (c.name) 
-			{
-			case "BaseCardLoc":
-				baseCardLoc = c;
-				break;
-			case "ModCardLoc":
-				modCardLoc = c;
-				break;
-			case "ResultLoc":
-				resultLoc = c;
-				break;
-			}
-		}
-
-
+		baseCard = null;
 	}
 
+	public void ChangeBase(Card _baseCard)
+	{
+		if (baseCard != null) 
+		{
+			HandManager.instance.PushCard (baseCard);
+		}
+		HandManager.instance.RemoveCard (_baseCard);
+		_baseCard.CardObjectTransform.parent = baseCardLoc.transform;
+		_baseCard.CardObjectTransform.localPosition = Vector3.zero;
+		baseCard = _baseCard;
+		Debug.Log ("ChangedBase");
+	}
+
+	public
+
+	void UpdateResult()
+	{
+		
+	}
 
 	// Use this for initialization
 	void Start () {

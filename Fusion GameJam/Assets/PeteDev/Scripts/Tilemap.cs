@@ -8,6 +8,7 @@ public class Tilemap : MonoBehaviour {
     GameObject m_tile;
 
     List<GameObject> m_gridCells;
+    List<GameObject> m_placeableTiles;
 
     int m_height, m_width;
     float m_tileOffset;
@@ -19,6 +20,7 @@ public class Tilemap : MonoBehaviour {
         m_tileOffset = 0.5f;
 
         m_gridCells = new List<GameObject>();
+        m_placeableTiles = new List<GameObject>();
         GenerateMap();  //call method
 	}
 
@@ -53,6 +55,8 @@ public class Tilemap : MonoBehaviour {
                         curCellScript.SetCellNeighbour(7, other_cell);
                     }
                 }
+
+                //vertical
                 if (y > 0)
                 {
                     other_cell = m_gridCells[m_gridCells.Count - m_width];
@@ -80,28 +84,9 @@ public class Tilemap : MonoBehaviour {
         }
     }
 
-    /*void GenerateMap()
+    //used to update after a card is placed; checks for new buildings, placeable tiles etc
+    void RecalulateMap()
     {
-        GameObject cur_cell;
-        GameObject other_cell;
 
-        for (float y = 0; y < m_height; y++)
-        {
-            for (float x = 0; x < m_width; x++)
-            {
-                GameObject obj = ObjectPooler.m_current.GetPooledObject();
-
-                if (obj == null)
-                {
-                    return;
-                }
-
-                obj.transform.position = new Vector2((x * m_tileOffset) + (m_tileOffset / 2), (y * m_tileOffset) - (m_tileOffset / 2));
-                obj.transform.rotation = transform.rotation;
-                obj.transform.SetParent(gameObject.transform);
-                obj.GetComponentInChildren<Tile>().SetTileType(Random.Range(0, 4));
-                obj.SetActive(true);
-            }
-        }
-    }*/
+    }
 }

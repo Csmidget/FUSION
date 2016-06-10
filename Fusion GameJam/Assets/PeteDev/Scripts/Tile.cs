@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
 
@@ -12,7 +11,7 @@ public class Tile : MonoBehaviour {
     GameObject m_occupant;
 
     public Sprite[] m_sprites;
-    SpriteRenderer m_spriteRendChild;
+    public SpriteRenderer m_spriteRendChild;
 
     public GameObject m_top;
     public GameObject m_bottom;
@@ -23,11 +22,15 @@ public class Tile : MonoBehaviour {
     public GameObject m_topLeft;
     public GameObject m_bottomRight;
     public GameObject m_bottomLeft;
-    
 
+    Collider2D m_col2D;
+
+    //for movement costs, units can have a passive bonus that increases/decreases their
+    //movement speed based on the terrain they are on
 	void Awake ()
     {
         m_spriteRendChild = GetComponentInChildren<SpriteRenderer>();
+        m_col2D = GetComponent<Collider2D>();
 	}
 
     //needs to be called when the tile is clicked
@@ -127,31 +130,82 @@ public class Tile : MonoBehaviour {
         //- if no card selected, show detail about the tile/occupant (or make nothing happen)
         //
 
-        /*
-         * if(GameState.m_instance.isCardSelected == true)
+        /*  //Will need to include resources later
+         * if(CardIsPlaceable)  //check if card is currently in the "placement" stage
          * {
-         *      if(!IsOccupied)
+         *      if(TileIsPlaceable)     //Create list of passable tiles, iterate through
          *      {
-         *          if(GameState.m_instance.resourceCount > GameState.m_instance.GetCurrentCard().GetResourceCost())    //turn into method in Singleton, call it here
-         *          {
-         *              //will need to iterate through each tile
-         *              if(Vector2.Distance(transform.position, structure.transform.position) < threshold)
-         *              {
-         *                  //place card
-         *                  m_occupant = Gamestate.m_instance.GetCurrentCard();
-         *                  //set icon here
-         *              }
-         *          }
+         *          //place card (occupant variable)
          *      }
          *      else
          *      {
-         *          //card cannot be placed (show visual, send event?)
+         *          //no movement allowed
          *      }
          * }
          * else
          * {
-         *      //show detail about tile being clicked
+         *      //show details about tile that has been clicked
          * }
          * */
+        //Debug.Log("I've been clicked");
+        //m_spriteRendChild.sprite = m_sprites[4];
+        //m_bottomRight.GetComponent<Tile>().m_spriteRendChild.sprite = m_sprites[4];
+    }
+
+    void FixedUpdate()
+    {
+        //GetClickedTile();
+    }
+
+    public GameObject GetClickedTile()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (m_col2D.OverlapPoint(mousePosition))
+            {
+                Debug.Log("Here");
+                return m_col2D.gameObject;
+            }
+        }
+        return null;
+    }
+
+    public GameObject GetNeighbour(int _pos)
+    {
+        if (_pos == 0)
+        {
+            return m_top;
+        }
+        if (_pos == 1)
+        {
+            return m_bottom;
+        }
+        if (_pos == 2)
+        {
+            return m_left;
+        }
+        if (_pos == 3)
+        {
+            return m_right;
+        }
+        if (_pos == 4)
+        {
+            return m_topLeft;
+        }
+        if (_pos == 5)
+        {
+            return m_bottomRight;
+        }
+        if (_pos == 6)
+        {
+            return m_topRight;
+        }
+        if (_pos == 7)
+        {
+            return m_bottomLeft;
+        }
+        return null;
     }
 }

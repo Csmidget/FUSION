@@ -14,15 +14,15 @@ public class Tile : MonoBehaviour {
     public Sprite[] m_sprites;
     SpriteRenderer m_spriteRendChild;
 
-    GameObject m_top;
-    GameObject m_bottom;
-    GameObject m_left;
-    GameObject m_right;
+    public GameObject m_top;
+    public GameObject m_bottom;
+    public GameObject m_left;
+    public GameObject m_right;
 
-    GameObject m_topRight;
-    GameObject m_topLeft;
-    GameObject m_bottomRight;
-    GameObject m_bottomLeft;
+    public GameObject m_topRight;
+    public GameObject m_topLeft;
+    public GameObject m_bottomRight;
+    public GameObject m_bottomLeft;
     
 
 	void Awake ()
@@ -112,6 +112,10 @@ public class Tile : MonoBehaviour {
         }
     }
 
+    public void SetTilePosition(float x, float y)
+    {
+        transform.position = new Vector2(x, y);
+    }
     //if mouse is pressed on tile
     void OnMouseDown()
     {

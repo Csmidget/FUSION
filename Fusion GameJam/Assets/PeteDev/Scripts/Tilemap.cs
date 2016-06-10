@@ -62,8 +62,8 @@ public class Tilemap : MonoBehaviour {
                     other_cell = m_gridCells[m_gridCells.Count - 1];
                     Tile otherCellScript = other_cell.GetComponent<Tile>();
 
-                    otherCellScript.SetCellNeighbour(3, cur_cell);
-                    curCellScript.SetCellNeighbour(2, other_cell);
+                    otherCellScript.SetCellNeighbour(3, curCellScript);
+                    curCellScript.SetCellNeighbour(2, otherCellScript);
 
                     if (y > 0)
                     {
@@ -71,8 +71,8 @@ public class Tilemap : MonoBehaviour {
                         otherCellScript = other_cell.GetComponent<Tile>();
                         curCellScript = cur_cell.GetComponent<Tile>();
 
-                        otherCellScript.SetCellNeighbour(6, cur_cell);
-                        curCellScript.SetCellNeighbour(7, other_cell);
+                        otherCellScript.SetCellNeighbour(6, curCellScript);
+                        curCellScript.SetCellNeighbour(7, otherCellScript);
                     }
                 }
 
@@ -82,8 +82,8 @@ public class Tilemap : MonoBehaviour {
                     other_cell = m_gridCells[m_gridCells.Count - m_width];
                     Tile otherCellScript = other_cell.GetComponent<Tile>();
 
-                    otherCellScript.SetCellNeighbour(0, cur_cell);
-                    curCellScript.SetCellNeighbour(1, other_cell);
+                    otherCellScript.SetCellNeighbour(0, curCellScript);
+                    curCellScript.SetCellNeighbour(1, otherCellScript);
                 }
 
                 if (y > 0 && y < m_height && x < m_width - 1)
@@ -91,8 +91,8 @@ public class Tilemap : MonoBehaviour {
                     other_cell = m_gridCells[m_gridCells.Count - m_width + 1];
                     Tile otherCellScript = other_cell.GetComponent<Tile>();
 
-                    otherCellScript.SetCellNeighbour(4, cur_cell);
-                    curCellScript.SetCellNeighbour(5, other_cell);
+                    otherCellScript.SetCellNeighbour(4, curCellScript);
+                    curCellScript.SetCellNeighbour(5, otherCellScript);
                 }
 
 

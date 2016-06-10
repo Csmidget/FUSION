@@ -30,6 +30,7 @@ public class UnitManager : MonoBehaviour
 		Unit newUnit = newUnitGO.GetComponent<Unit> ();
 		newUnitGO.transform.SetParent (homeTile.gameObject.transform);
 		newUnit.M_cardStats = CardController.instance.GetCardCopy ("Town Centre");
+		newUnit.M_cardStats.CardObject.SetActive (false);
 		newUnit.m_tile = homeTile;
 		m_units.Add (newUnit);
 		return newUnit;

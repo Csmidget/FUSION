@@ -139,12 +139,11 @@ public class Tile : MonoBehaviour {
 			distanceAway -= 1;
 			if (!IsOccupied () && !UnitManager.m_instance.validTiles.Contains (this)) {
 				UnitManager.m_instance.validTiles.Add (this);
-				Debug.Log ("TILE FOUND");
 			}
 			for (int i = 0; i <= 7; i++) 
 			{
 				if (GetNeighbour(i) != null)
-				GetNeighbour (i).GetComponent<Tile>().CheckTiles (distanceAway);
+				GetNeighbour (i).CheckTiles (distanceAway);
 			}
 		}
 

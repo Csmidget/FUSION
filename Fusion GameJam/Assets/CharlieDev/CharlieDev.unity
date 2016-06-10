@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &908828709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: FUSE
 --- !u!222 &1029697159
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -694,6 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00b6ded21fde1c40949be4a6d6f3b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuseButton: {fileID: 908828708}
   baseCardLoc: {fileID: 108893740}
   modCardLoc: {fileID: 942952490}
   resultLoc: {fileID: 1062571309}
@@ -769,6 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 125466, guid: 8a086f4e759b93d4a9cf98d16d296a99, type: 2}
+  cardTargetRadius: 0
 --- !u!1 &1527130477
 GameObject:
   m_ObjectHideFlags: 0

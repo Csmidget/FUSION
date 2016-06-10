@@ -5,6 +5,7 @@ public class CardFuser : MonoBehaviour {
 
 	public static CardFuser instance;
 
+	public GameObject fuseButton;
 	public Card baseCard;
 	public List<Card> modifiers;
 	public Card fusedCard;
@@ -30,7 +31,16 @@ public class CardFuser : MonoBehaviour {
 
 		modifiers.Clear ();
 		baseCard = null;
+		ToggleFuseButton ();
 		return fusedCard;
+	}
+
+	void ToggleFuseButton()
+	{
+		if (baseCard != null && modifiers.Count > 0)
+			fuseButton.SetActive (true);
+		else
+			fuseButton.SetActive (false);
 	}
 
 	void Awake()
@@ -53,7 +63,7 @@ public class CardFuser : MonoBehaviour {
 			modifiers.Add(_modCard);
 			SortModifiers ();	
 			Debug.Log ("ChangedBase");
-
+			ToggleFuseButton ();
 		}
 	}
 
@@ -81,6 +91,7 @@ public class CardFuser : MonoBehaviour {
 		_baseCard.InFuser = true;
 		baseCard = _baseCard;
 		Debug.Log ("ChangedBase");
+		ToggleFuseButton ();
 	}
 
 	public void RemoveBase()
@@ -92,6 +103,7 @@ public class CardFuser : MonoBehaviour {
 			baseCard = null;
 		}
 		HandManager.instance.SortHand ();
+		ToggleFuseButton ();
 	}
 
 	public void RemoveModifier(Card _modifier)
@@ -104,6 +116,7 @@ public class CardFuser : MonoBehaviour {
 		}
 		HandManager.instance.SortHand ();
 		SortModifiers ();
+		ToggleFuseButton ();
 	}
 
 	public

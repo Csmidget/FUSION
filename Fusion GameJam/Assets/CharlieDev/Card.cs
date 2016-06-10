@@ -74,9 +74,14 @@ public class Card {
 		else
 			prefix2 = "";
 
-		Debug.Log("prefix1: " + prefix1);
-		Debug.Log("prefix2: " + prefix2);
-		name = prefix1 + " " + prefix2 + " " + baseCard.Name;
+	//	Debug.Log("prefix1: " + prefix1);
+	//	Debug.Log("prefix2: " + prefix2);
+
+		if (prefix2 == "") 
+				name = prefix1 + " " + prefix2 + " " + baseCard.Name;
+		else
+			name = prefix1 + " " + prefix2 + "\n" + baseCard.Name;
+
 		Debug.Log ("Name:" + name);
 		cardImage = baseCard.CardImage;
 		cardText = baseCard.CardText;
@@ -92,33 +97,7 @@ public class Card {
 	cardObjectTransform = cardObject.GetComponent<Transform> ();
 		CardObjectTransform.position = new Vector2 (5, -3);
 
-	List<GameObject> children = new List<GameObject> ();
-	foreach (Transform t in cardObject.transform) {
-		children.Add (t.gameObject);
-	}
-	foreach (GameObject c in children) {
-		switch (c.name) 
-		{
-		case "cardpic":
-			c.GetComponent<SpriteRenderer> ().sprite = cardImage;
-			break;
-		case "name":
-			c.GetComponent<TextMesh> ().text = name;
-			break;
-		case "desc":
-			c.GetComponent<TextMesh> ().text = cardText;
-			break;
-		case "type":
-			c.GetComponent<TextMesh> ().text = cardType.ToString();
-			break;
-		case "defence":
-			c.GetComponent<TextMesh> ().text = defence.ToString ();
-			break;
-		case "attack":
-			c.GetComponent<TextMesh> ().text = attack.ToString ();
-			break;
-		}
-	}
+		UpdateCardObject ();
 
 	}
 
@@ -154,33 +133,7 @@ public class Card {
 		cardObjectTransform = cardObject.GetComponent<Transform> ();
 
 
-		List<GameObject> children = new List<GameObject> ();
-		foreach (Transform t in cardObject.transform) {
-			children.Add (t.gameObject);
-		}
-		foreach (GameObject c in children) {
-			switch (c.name) 
-			{
-			case "cardpic":
-				c.GetComponent<SpriteRenderer> ().sprite = cardImage;
-				break;
-			case "name":
-				c.GetComponent<TextMesh> ().text = name;
-				break;
-			case "desc":
-				c.GetComponent<TextMesh> ().text = _cardText;
-				break;
-			case "type":
-				c.GetComponent<TextMesh> ().text = cardType.ToString();
-				break;
-			case "defence":
-				c.GetComponent<TextMesh> ().text = defence.ToString ();
-				break;
-			case "attack":
-				c.GetComponent<TextMesh> ().text = attack.ToString ();
-				break;
-			}
-		}
+		UpdateCardObject ();
 
 		unitPrefix = null;
 		structurePrefix = null;
@@ -218,33 +171,7 @@ public class Card {
 		cardObjectTransform = cardObject.GetComponent<Transform> ();
 
 
-		List<GameObject> children = new List<GameObject> ();
-		foreach (Transform t in cardObject.transform) {
-			children.Add (t.gameObject);
-		}
-		foreach (GameObject c in children) {
-			switch (c.name) 
-			{
-			case "cardpic":
-				c.GetComponent<SpriteRenderer> ().sprite = cardImage;
-				break;
-			case "name":
-				c.GetComponent<TextMesh> ().text = name;
-				break;
-			case "desc":
-				c.GetComponent<TextMesh> ().text = _cardText;
-				break;
-			case "type":
-				c.GetComponent<TextMesh> ().text = cardType.ToString();
-				break;
-			case "defence":
-				c.GetComponent<TextMesh> ().text = defence.ToString ();
-				break;
-			case "attack":
-				c.GetComponent<TextMesh> ().text = attack.ToString ();
-				break;
-			}
-		}
+		UpdateCardObject ();
 
 		structurePrefix = _structurePrefix;
 		Debug.Log (StructurePrefix);
@@ -263,6 +190,36 @@ public class Card {
 		return newCard;
 	}
 
+	void UpdateCardObject()
+	{
+		List<GameObject> children = new List<GameObject> ();
+		foreach (Transform t in cardObject.transform) {
+			children.Add (t.gameObject);
+		}
+		foreach (GameObject c in children) {
+			switch (c.name) 
+			{
+			case "cardpic":
+				c.GetComponent<SpriteRenderer> ().sprite = cardImage;
+				break;
+			case "name":
+				c.GetComponent<TextMesh> ().text = name;
+				break;
+			case "desc":
+				c.GetComponent<TextMesh> ().text = cardText;
+				break;
+			case "type":
+				c.GetComponent<TextMesh> ().text = cardType.ToString();
+				break;
+			case "defence":
+				c.GetComponent<TextMesh> ().text = defence.ToString ();
+				break;
+			case "attack":
+				c.GetComponent<TextMesh> ().text = attack.ToString ();
+				break;
+			}
+		}
+	}
 
 	public GameObject CardObject {
 		get {
@@ -330,29 +287,7 @@ public class Card {
 		}
 	}
 
-	public int Attack {
-		get {
-			return attack;
-		}
-	}
 
-	public int Range {
-		get {
-			return range;
-		}
-	}
-
-	public int Defence {
-		get {
-			return defence;
-		}
-	}
-
-	public int Speed {
-		get {
-			return speed;
-		}
-	}
 
 
 	public string StructurePrefix {
@@ -376,6 +311,46 @@ public class Card {
 	public CardMover GetCardMover {
 		get {
 			return cardMover;
+		}
+	}
+
+	public int Range {
+		get {
+			return range;
+		}
+		set {
+			range = value;
+			UpdateCardObject ();
+		}
+	}
+
+	public int Attack {
+		get {
+			return attack;
+		}
+		set {
+			attack = value;
+			UpdateCardObject ();
+		}
+	}
+
+	public int Defence {
+		get {
+			return defence;
+		}
+		set {
+			defence = value;
+			UpdateCardObject ();
+		}
+	}
+
+	public int Speed {
+		get {
+			return speed;
+		}
+		set {
+			speed = value;
+			UpdateCardObject ();
 		}
 	}
 }

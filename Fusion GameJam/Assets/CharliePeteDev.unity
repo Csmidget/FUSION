@@ -687,7 +687,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unitPrefab: {fileID: 146532, guid: c69de263cbc42774b813fe345e3a5251, type: 2}
-  m_placementindicatorprefab: {fileID: 0}
+  m_placementindicatorprefab: {fileID: 132818, guid: ca3a032d0a18237469a46ff3813c3829,
+    type: 2}
   m_isInPlacement: 0
   validTiles: []
 --- !u!4 &1269598662

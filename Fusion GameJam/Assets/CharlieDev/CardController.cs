@@ -161,7 +161,7 @@ public class CardController : MonoBehaviour {
 				SpriteController.instance.GetSprite("StoneAgeHut"),
 				"Gathers Resources",
 				true,
-				0,
+				2,
 				0,
 				3,
 				0
@@ -176,9 +176,24 @@ public class CardController : MonoBehaviour {
 				SpriteController.instance.GetSprite("StoneAgeHut2"),
 				"Does Research",
 				true,
-				0,
+				2,
 				0,
 				3,
+				0
+			));
+		cardDictionary.Add(
+			"Town Centre",
+			new Card(
+				cardPrefab,
+				CardType.Base,
+				SubType.Structure,
+				"Town Centre",
+				SpriteController.instance.GetSprite("Town"),
+				"Your base of\noperations",
+				true,
+				3,
+				0,
+				30,
 				0
 			));
 

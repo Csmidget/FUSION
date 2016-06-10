@@ -24,9 +24,21 @@ public class UnitManager : MonoBehaviour
 		}
 	}
 
+	public Unit CreateTownCentre(Tile homeTile)
+	{
+		GameObject newUnitGO = (GameObject)Instantiate (m_unitPrefab, new Vector3(homeTile.transform.position.x,homeTile.transform.position.y,-1), Quaternion.identity);
+		Unit newUnit = newUnitGO.GetComponent<Unit> ();
+		newUnitGO.transform.SetParent (homeTile.gameObject.transform);
+		newUnit.M_cardStats = CardController.instance.GetCardCopy ("Town Centre");
+		newUnit.m_tile = homeTile;
+		m_units.Add (newUnit);
+		return newUnit;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
+		placementIndicatorList = new List<GameObject> ();
 		m_units = new List<Unit> ();
 		m_isInPlacement = false;
 	}

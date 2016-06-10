@@ -13,15 +13,15 @@ public class Tile : MonoBehaviour {
     public Sprite[] m_sprites;
     public SpriteRenderer m_spriteRendChild;
 
-    public GameObject m_top;
-    public GameObject m_bottom;
-    public GameObject m_left;
-    public GameObject m_right;
+    public Tile m_top;
+    public Tile m_bottom;
+    public Tile m_left;
+    public Tile m_right;
 
-    public GameObject m_topRight;
-    public GameObject m_topLeft;
-    public GameObject m_bottomRight;
-    public GameObject m_bottomLeft;
+    public Tile m_topRight;
+    public Tile m_topLeft;
+    public Tile m_bottomRight;
+    public Tile m_bottomLeft;
 
     Collider2D m_col2D;
 
@@ -48,7 +48,7 @@ public class Tile : MonoBehaviour {
 		return m_occupant.GetComponent<Unit> ().M_cardStats.GetSubType;
 	}
 
-    public void SetCellNeighbour(int _position, GameObject _neighbour)
+    public void SetCellNeighbour(int _position, Tile _neighbour)
     {
         //top
         if(_position == 0)
@@ -132,16 +132,18 @@ public class Tile : MonoBehaviour {
 
 	public void CheckTiles(int distanceAway)
 	{
-		if (distanceAway <= 0)
+		if (distanceAway < 0)
 			return;
 		else 
 		{
 			distanceAway -= 1;
-			if(!IsOccupied() && !UnitManager.m_instance.validTiles.Contains(this))
-			UnitManager.m_instance.validTiles.Add (this);
-
+			if (!IsOccupied () && !UnitManager.m_instance.validTiles.Contains (this)) {
+				UnitManager.m_instance.validTiles.Add (this);
+				Debug.Log ("TILE FOUND");
+			}
 			for (int i = 0; i <= 7; i++) 
 			{
+				if (GetNeighbour(i) != null)
 				GetNeighbour (i).GetComponent<Tile>().CheckTiles (distanceAway);
 			}
 		}
@@ -182,7 +184,7 @@ public class Tile : MonoBehaviour {
         return null;
     }
 
-    public GameObject GetNeighbour(int _pos)
+    public Tile GetNeighbour(int _pos)
     {
         if (_pos == 0)
         {

@@ -95,8 +95,16 @@ public class Tilemap : MonoBehaviour {
                     curCellScript.SetCellNeighbour(5, other_cell);
                 }
 
+
+
                 curCellScript.SetTilePosition((x * m_tileOffset) + (m_tileOffset / 2), (y * m_tileOffset) - (m_tileOffset));
                 curCellScript.SetTileType(Random.Range(0, 4));
+
+				if (y == m_height / 2) {
+					if (x == 0)
+						UnitManager.m_instance.CreateTownCentre (curCellScript);
+					}
+
 
                 m_gridCells.Add(cur_cell);
                 m_gridCells[m_gridCells.Count - 1].transform.SetParent(transform);

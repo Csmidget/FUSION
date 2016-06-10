@@ -35,6 +35,44 @@ public class CardController : MonoBehaviour {
 
 	}
 
+	public Card GetRandomCard()
+	{
+		int randNum = Random.Range (0, cardDictionary.Count);
+		List<Card> cardList = new List<Card> ();
+		foreach (Card c in cardDictionary.Values) {
+			cardList.Add (c);
+		}
+		return cardList [randNum].MakeCopy();
+	}
+
+	public Card GetRandomModifier()
+	{
+		List<Card> cardList = new List<Card> ();
+		foreach (Card c in cardDictionary.Values) {
+			cardList.Add (c);
+		}
+		int randNum = Random.Range (0, cardDictionary.Count);
+		while (cardList [randNum].GetCardType != CardType.Modifier) {
+			randNum = Random.Range (0, cardDictionary.Count);
+		}
+
+		return cardList [randNum].MakeCopy();
+	}
+
+	public Card GetRandomBase()
+	{
+		List<Card> cardList = new List<Card> ();
+		foreach (Card c in cardDictionary.Values) {
+			cardList.Add (c);
+		}
+		int randNum = Random.Range (0, cardDictionary.Count);
+		while (cardList [randNum].GetCardType != CardType.Base) {
+			randNum = Random.Range (0, cardDictionary.Count);
+		}
+
+		return cardList [randNum].MakeCopy();
+	}
+
 
 	// Use this for initialization
 	void Start () {

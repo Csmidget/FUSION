@@ -10,8 +10,10 @@ public class HandManager : MonoBehaviour {
 	public GameObject thisObject;
 	public static HandManager instance;
 	public GameObject cardPrefab;
-	List<Card> cards;
+	public List<Card> cards;
 	public float cardSpacing = 1.5f;
+	public int numBases;
+	public int numModifiers;
 
 	void Awake()
 	{
@@ -43,6 +45,10 @@ public class HandManager : MonoBehaviour {
 		Card newCard = CardController.instance.GetCardCopy (cardname);
 		newCard.CardObjectTransform.parent = this.transform;
 		cards.Add (newCard);
+		if (newCard.GetCardType == CardType.Base)
+			numBases++;
+		else
+			numModifiers++;
 	}
 
 	public void PushCard(Card _card)
@@ -52,6 +58,10 @@ public class HandManager : MonoBehaviour {
 		Debug.Log (cards.Count);
 		_card.InHand = true;
 		SortHand ();
+		if (_card.GetCardType == CardType.Base)
+			numBases++;
+		else
+			numModifiers++;
 	}
 
 	public void RemoveCard(Card _card)
@@ -62,6 +72,10 @@ public class HandManager : MonoBehaviour {
 			Debug.Log ("OH GOD " + cards.Count);
 			_card.InHand = false;
 			SortHand ();
+			if (_card.GetCardType == CardType.Base)
+				numBases--;
+			else
+				numModifiers--;
 		}
 	}
 

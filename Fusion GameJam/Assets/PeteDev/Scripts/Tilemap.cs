@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class Tilemap : MonoBehaviour {
 
+
+	//CardFuser
+	//fusedCard
+
     [SerializeField]
     GameObject m_tile;
 

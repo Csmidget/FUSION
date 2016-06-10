@@ -10,15 +10,18 @@ public class HandManager : MonoBehaviour {
 	public GameObject thisObject;
 	public static HandManager instance;
 	public GameObject cardPrefab;
-	public List<Card> cards;
+	public Hand currHand;
+
 	public float cardSpacing = 1.5f;
 	public int numBases;
 	public int numModifiers;
 
 	void Awake()
 	{
-		if (instance == null)
+		if (instance == null) {
 			instance = this;
+			Debug.Log ("HANDMANAGER INSTANCE MADE");
+		}
 		else {
 			Destroy (this);
 			Debug.Log ("HandManager instance already exists");
@@ -26,10 +29,20 @@ public class HandManager : MonoBehaviour {
 
 	}
 
+	public void ChangeCurrentHand(Hand newHand)
+	{
+		currHand.gameObject.SetActive (false);
+		currHand = newHand;
+		newHand.gameObject.SetActive (true);
+	}
+
 	// Use this for initialization
 	void Start () {
+	}
 
-		cards = new List<Card>();
+	public void SetupHand()
+	{
+		currHand.cards = new List<Card>();
 		AddCard ("CaveMan");
 		AddCard ("Spear");
 		AddCard ("Goat");
@@ -43,8 +56,8 @@ public class HandManager : MonoBehaviour {
 	void AddCard(string cardname)
 	{
 		Card newCard = CardController.instance.GetCardCopy (cardname);
-		newCard.CardObjectTransform.parent = this.transform;
-		cards.Add (newCard);
+		newCard.CardObjectTransform.parent = currHand.transform;
+		currHand.cards.Add (newCard);
 		if (newCard.GetCardType == CardType.Base)
 			numBases++;
 		else
@@ -53,9 +66,9 @@ public class HandManager : MonoBehaviour {
 
 	public void PushCard(Card _card)
 	{
-		cards.Add (_card);
-		_card.CardObjectTransform.parent = this.transform;
-		Debug.Log (cards.Count);
+		currHand.cards.Add (_card);
+		_card.CardObjectTransform.parent = currHand.transform;
+		Debug.Log (currHand.cards.Count);
 		_card.InHand = true;
 		SortHand ();
 		if (_card.GetCardType == CardType.Base)
@@ -66,10 +79,10 @@ public class HandManager : MonoBehaviour {
 
 	public void RemoveCard(Card _card)
 	{
-		if(cards.Contains(_card))
+		if(currHand.cards.Contains(_card))
 		{
-			cards.Remove (_card);
-			Debug.Log ("OH GOD " + cards.Count);
+			currHand.cards.Remove (_card);
+			Debug.Log ("OH GOD " + currHand.cards.Count);
 			_card.InHand = false;
 			SortHand ();
 			if (_card.GetCardType == CardType.Base)
@@ -82,13 +95,13 @@ public class HandManager : MonoBehaviour {
 	public void SortHand()
 	{
 		Debug.Log ("SortHand");
-		float cardCount = cards.Count;
+		float cardCount = currHand.cards.Count;
 		for (int i = 0; i < cardCount; i++) 
 		{
 			//Transform pos = cards[i].GetComponent<Transform>();
-			Vector3 pos = new Vector3 (this.transform.position.x -(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), transform.position.y,-80 + i*3);
+			Vector3 pos = new Vector3 (currHand.transform.position.x -(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), currHand.transform.position.y,-80 + i*3);
 		
-			cards [i].CardObject.GetComponent<CardMover>().targetLoc = pos;
+			currHand.cards [i].CardObject.GetComponent<CardMover>().targetLoc = pos;
 		}
 		return;
 	}

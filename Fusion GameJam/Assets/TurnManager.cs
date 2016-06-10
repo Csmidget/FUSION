@@ -4,7 +4,7 @@ using System.Collections;
 public class TurnManager : MonoBehaviour {
 
 	public static TurnManager instance;
-
+	public Player currPlayer;
 	void Awake()
 	{
 		if (instance == null) {
@@ -21,9 +21,10 @@ public class TurnManager : MonoBehaviour {
 
 	public void EndTurn()
 	{
+		CardFuser.instance.EmptyFuser ();
 		for (int i = 0; i < 2; i++) 
 		{
-			if (HandManager.instance.cards.Count < 10)
+			if (HandManager.instance.currHand.cards.Count < 10)
 			{
 				if (HandManager.instance.numBases < 1) 
 					HandManager.instance.PushCard (CardController.instance.GetRandomBase ());				
@@ -35,11 +36,23 @@ public class TurnManager : MonoBehaviour {
 
 			}
 		}
+		SwitchPlayer ();
+	}
+
+	void SwitchPlayer()
+	{
+		if (currPlayer == PlayerManager.instance.p1)
+			currPlayer = PlayerManager.instance.p2;
+		else
+			currPlayer = PlayerManager.instance.p1;
+
+		HandManager.instance.ChangeCurrentHand (currPlayer.hand);
 	}
 
 	// Use this for initialization
 	void Start () {
-	
+		currPlayer = PlayerManager.instance.p1;
+		HandManager.instance.ChangeCurrentHand (currPlayer.hand);
 	}
 	
 	// Update is called once per frame

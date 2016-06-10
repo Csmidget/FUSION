@@ -14,6 +14,15 @@ public class CardFuser : MonoBehaviour {
 	public GameObject resultLoc;
 
 
+	public void EmptyFuser()
+	{
+		RemoveBase ();
+		if (modifiers.Count > 0)
+			RemoveModifier (modifiers [0]);
+		if (modifiers.Count > 0)
+			RemoveModifier (modifiers [0]);
+	}
+
 	public Card Fuse()
 	{
 		if (modifiers.Count == 1)

@@ -8,14 +8,29 @@ public class Tilemap : MonoBehaviour {
 	//CardFuser
 	//fusedCard
 
+	public static Tilemap m_instance;
+
     [SerializeField]
     GameObject m_tile;
 
     List<GameObject> m_gridCells;
-    List<GameObject> m_placeableTiles;
+
+    List<GameObject> m_p1PlaceableTiles;
+	List<GameObject> m_p2PlaceableTiles;
+
 
     int m_height, m_width;
     float m_tileOffset;
+
+	void Awake()
+	{
+		if (m_instance == null) {
+			m_instance = this;
+		} else {
+			Debug.Log ("Tilemap instance already found");
+			Destroy (this);
+		}
+	}
 
 	void Start ()
     {
@@ -24,7 +39,8 @@ public class Tilemap : MonoBehaviour {
         m_tileOffset = 0.5f;
 
         m_gridCells = new List<GameObject>();
-        m_placeableTiles = new List<GameObject>();
+        m_p1PlaceableTiles = new List<GameObject>();
+		m_p2PlaceableTiles = new List<GameObject>();
         GenerateMap();  //call method
 	}
 
@@ -91,6 +107,7 @@ public class Tilemap : MonoBehaviour {
     //used to update after a card is placed; checks for new buildings, placeable tiles etc
     void RecalulateMap()
     {
+		//iterate through the tiles, add structures to a list, provided they aren't already in there
 
     }
 }

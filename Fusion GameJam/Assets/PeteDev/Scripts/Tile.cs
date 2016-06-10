@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour {
     // - when card is selected, and tile is clicked, assign selected card as occupant
 
     [SerializeField]
-    GameObject m_occupant;
+    Unit m_occupant;
 
     public Sprite[] m_sprites;
     public SpriteRenderer m_spriteRendChild;
@@ -42,6 +42,11 @@ public class Tile : MonoBehaviour {
         }
         return false;
     }
+
+	public SubType GetOccupantType()
+	{
+		return m_occupant.GetComponent<Unit> ().M_cardStats.GetSubType;
+	}
 
     public void SetCellNeighbour(int _position, GameObject _neighbour)
     {
@@ -119,42 +124,10 @@ public class Tile : MonoBehaviour {
     {
         transform.position = new Vector2(x, y);
     }
-    //if mouse is pressed on tile
-    void OnMouseDown()
-    {
-        //- check to see if a card is currently selected (get from singleton)
-        //  - if it is, check if tile is empty (no occupant)
-        //      - if it is, check if tile is within range of structure
-        //          - if it is, place currently selected card on tile (match position)
-        //      - if it is not, do not place card (visual feedback?)
-        //- if no card selected, show detail about the tile/occupant (or make nothing happen)
-        //
 
-        /*  //Will need to include resources later
-         * if(CardIsPlaceable)  //check if card is currently in the "placement" stage
-         * {
-         *      if(TileIsPlaceable)     //Create list of passable tiles, iterate through
-         *      {
-         *          //place card (occupant variable)
-         *      }
-         *      else
-         *      {
-         *          //no movement allowed
-         *      }
-         * }
-         * else
-         * {
-         *      //show details about tile that has been clicked
-         * }
-         * */
-        //Debug.Log("I've been clicked");
-        //m_spriteRendChild.sprite = m_sprites[4];
-        //m_bottomRight.GetComponent<Tile>().m_spriteRendChild.sprite = m_sprites[4];
-    }
-
-    void FixedUpdate()
+    void Update()
     {
-        //GetClickedTile();
+        GetClickedTile();
     }
 
     public GameObject GetClickedTile()
@@ -165,8 +138,16 @@ public class Tile : MonoBehaviour {
 
             if (m_col2D.OverlapPoint(mousePosition))
             {
-                Debug.Log("Here");
-                return m_col2D.gameObject;
+                //Debug.Log("Here");
+                //return m_col2D.gameObject;
+				if (UnitManager.m_instance.m_isInPlacement)
+				{
+					//TODO mountains
+					if (!IsOccupied())
+					{
+						m_occupant = UnitManager.m_instance.PlaceUnit (this);
+					}
+				}
             }
         }
         return null;

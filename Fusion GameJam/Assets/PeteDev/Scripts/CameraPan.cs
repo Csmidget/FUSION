@@ -33,9 +33,9 @@ public class CameraPan : MonoBehaviour {
 		if (Input.GetMouseButton (1))
 		{
 			Debug.Log (transform.position);
-			transform.Translate(new Vector2(-Input.GetAxis ("Mouse X"), -Input.GetAxis ("Mouse Y")) * m_camSpeed * Time.deltaTime);
+			transform.Translate(new Vector2(Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y")) * m_camSpeed * Time.deltaTime);
 			//implement caps
-			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, m_horizNegMax, m_horizPosMax), Mathf.Clamp (transform.position.y, m_vertNegMax, m_vertPosMax), -10);
+			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, m_horizNegMax, m_horizPosMax), Mathf.Clamp (transform.position.y, m_vertNegMax, m_vertPosMax), 0);
 		}
 	}
 }

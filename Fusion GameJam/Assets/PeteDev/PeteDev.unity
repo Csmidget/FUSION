@@ -85,6 +85,47 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &760017489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 760017491}
+  - 114: {fileID: 760017490}
+  m_Layer: 0
+  m_Name: UnitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &760017490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760017489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8091895d690243948a0934a21851d2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_unitPrefab: {fileID: 146532, guid: c69de263cbc42774b813fe345e3a5251, type: 2}
+  m_isInPlacement: 0
+--- !u!4 &760017491
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760017489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.0076594, y: 2.5891285, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &1084964320
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +138,6 @@ GameObject:
   - 92: {fileID: 1084964323}
   - 124: {fileID: 1084964322}
   - 81: {fileID: 1084964321}
-  - 114: {fileID: 1084964326}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -172,17 +212,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &1084964326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1084964320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65ae14b247b52344ae12afb9496122e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1551685760
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +222,7 @@ GameObject:
   - 4: {fileID: 1551685762}
   - 114: {fileID: 1551685761}
   - 114: {fileID: 1551685763}
+  - 114: {fileID: 1551685764}
   m_Layer: 0
   m_Name: TilemapGenerator
   m_TagString: Untagged
@@ -238,3 +268,18 @@ MonoBehaviour:
   m_pooledObject: {fileID: 180662, guid: ca226d86ebd55c6409ad52f19cdb3f6d, type: 2}
   m_pooledAmount: 480
   m_willGrow: 0
+--- !u!114 &1551685764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551685760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65ae14b247b52344ae12afb9496122e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_horizPosMax: 0
+  m_vertPosMax: 0
+  m_horizNegMax: 0
+  m_vertNegMax: 0

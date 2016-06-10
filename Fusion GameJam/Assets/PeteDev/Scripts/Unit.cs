@@ -3,10 +3,9 @@ using System.Collections;
 
 public class Unit : MonoBehaviour
 {
-	//hold a reference to the card
-	//hold a reference to the tile
+	//needs to edit the stats of the basecard when an event happens, such as health when attacked
 
-	public GameObject m_tileRef;
+	//public GameObject m_tileRef;
 
 	Card m_cardStats;
 
@@ -20,9 +19,17 @@ public class Unit : MonoBehaviour
 		
 	}
 
-	//take modifier, change stat
 	void ChangeStat(int _mod)
 	{
+
+	}
 		
+	public Card M_cardStats {
+		get {
+			return m_cardStats;
+		}
+		set {
+			m_cardStats = value;
+		}
 	}
 }

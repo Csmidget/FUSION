@@ -13,5 +13,15 @@ public class Modifier : Card {
 		unitPrefix = _unitPrefix;
 	}
 
+	public string UnitPrefix {
+		get {
+			return unitPrefix;
+		}
+	}
 
+	public string StructurePrefix {
+		get {
+			return structurePrefix;
+		}
+	}
 }

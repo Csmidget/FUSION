@@ -74,7 +74,7 @@ public class CardController : MonoBehaviour {
 
 		cardDictionary.Add(
 			"Spear",
-			new Modifier(
+			new Card(
 				cardPrefab,
 				CardType.Modifier,
 				SubType.Tool,
@@ -91,7 +91,7 @@ public class CardController : MonoBehaviour {
 			));
 		cardDictionary.Add(
 			"Bow",
-			new Modifier(
+			new Card(
 				cardPrefab,
 				CardType.Modifier,
 				SubType.Tool,
@@ -108,18 +108,18 @@ public class CardController : MonoBehaviour {
 			));
 		cardDictionary.Add(
 			"Club",
-			new Modifier(
+			new Card(
 				cardPrefab,
 				CardType.Modifier,
 				SubType.Tool,
 				"Club",
 				SpriteController.instance.GetSprite("Club"),
-				"+1 Range \n+2 Damage",
+				" \n+3 Damage",
 				true,
 				"Defended",
 				"Clubby",
-				1,
-				2,
+				0,
+				3,
 				0,
 				0
 			));
@@ -131,7 +131,7 @@ public class CardController : MonoBehaviour {
 				SubType.Unit,
 				"Goat",
 				SpriteController.instance.GetSprite("Goat"),
-				"This goat makes \n a meat shield",
+				"This goat makes\na good meat\nshield",
 				true,
 				1,
 				0,

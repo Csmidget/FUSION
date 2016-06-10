@@ -65,17 +65,16 @@ public class HandManager : MonoBehaviour {
 		}
 	}
 
-	void SortHand()
+	public void SortHand()
 	{
 		Debug.Log ("SortHand");
 		float cardCount = cards.Count;
 		for (int i = 0; i < cardCount; i++) 
 		{
 			//Transform pos = cards[i].GetComponent<Transform>();
-			Vector3 pos = new Vector3 (-(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), transform.position.y,-80 + i*3);
+			Vector3 pos = new Vector3 (this.transform.position.x -(((cardCount-1) / 2) * cardSpacing) + (i * cardSpacing), transform.position.y,-80 + i*3);
 		
 			cards [i].CardObjectTransform.position = pos;
-			Debug.Log ("Updated card");
 		}
 		return;
 	}

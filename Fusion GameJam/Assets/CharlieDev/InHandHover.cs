@@ -20,5 +20,6 @@ public class InHandHover : MonoBehaviour {
 	void OnMouseExit(){
 		if(thisCard.InHand)
 		transform.Translate (new Vector3 (0, -1.1f,15));
+		HandManager.instance.SortHand ();
 	}
 }

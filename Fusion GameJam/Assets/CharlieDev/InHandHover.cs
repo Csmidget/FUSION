@@ -13,13 +13,25 @@ public class InHandHover : MonoBehaviour {
 
 
 	void OnMouseEnter(){
-		if(thisCard.InHand)
-		transform.Translate(new Vector3(0,1.1f,-15));
+		if (thisCard.InHand) 
+		{
+			Vector3 newLoc = thisCard.CardObjectTransform.position;
+			newLoc.y += 1.1f;
+			newLoc.z -= 15;
+			thisCard.GetCardMover.targetLoc = newLoc;
+		}
+		//transform.Translate(new Vector3(0,1.1f,-15));
 	}
 
 	void OnMouseExit(){
 		if(thisCard.InHand)
-		transform.Translate (new Vector3 (0, -1.1f,15));
+		{
+			Vector3 newLoc = thisCard.CardObjectTransform.position;
+			newLoc.y -= 1.1f;
+			newLoc.z += 15;
+			thisCard.GetCardMover.targetLoc = newLoc;
+		}
+		//transform.Translate (new Vector3 (0, -1.1f,15));
 		HandManager.instance.SortHand ();
 	}
 }

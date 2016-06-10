@@ -60,9 +60,11 @@ public class CardFuser : MonoBehaviour {
 	void SortModifiers()
 	{
 		if (modifiers.Count > 0)
-			modifiers [0].CardObjectTransform.localPosition = Vector3.zero;
+			//modifiers [0].CardObjectTransform.localPosition = Vector3.zero;
+			modifiers[0].GetCardMover.targetLoc = modCardLoc.transform.position;
 		if (modifiers.Count > 1)
-			modifiers [1].CardObjectTransform.localPosition = new Vector3 (3, 0, 0);
+			//modifiers [1].CardObjectTransform.localPosition = new Vector3 (3, 0, 0);
+			modifiers[1].GetCardMover.targetLoc = modCardLoc.transform.position + new Vector3 (3,0,0);
 	}
 
 	public void ChangeBase(Card _baseCard)
@@ -74,7 +76,8 @@ public class CardFuser : MonoBehaviour {
 		}
 		HandManager.instance.RemoveCard (_baseCard);
 		_baseCard.CardObjectTransform.parent = baseCardLoc.transform;
-		_baseCard.CardObjectTransform.localPosition = Vector3.zero;
+		//_baseCard.CardObjectTransform.localPosition = Vector3.zero;
+		_baseCard.GetCardMover.targetLoc = baseCardLoc.transform.position;
 		_baseCard.InFuser = true;
 		baseCard = _baseCard;
 		Debug.Log ("ChangedBase");

@@ -12,6 +12,7 @@ public class Card {
 	protected SubType subType;
 	protected GameObject cardObject;
 	protected Transform cardObjectTransform;
+	protected CardMover cardMover;
 	protected GameObject prefab;
 	protected string name;
 	protected Sprite cardImage;
@@ -83,12 +84,13 @@ public class Card {
 		cardObject = GameObject.Instantiate (prefab);
 		cardObject.GetComponent<CardOnClick> ().thisCard = this;
 		cardObject.GetComponent<InHandHover> ().thisCard = this;
+		cardMover = cardObject.GetComponent<CardMover> ();
 		Debug.Log ("card made");
 
 	
 
 	cardObjectTransform = cardObject.GetComponent<Transform> ();
-
+		CardObjectTransform.position = new Vector2 (5, -3);
 
 	List<GameObject> children = new List<GameObject> ();
 	foreach (Transform t in cardObject.transform) {
@@ -144,6 +146,7 @@ public class Card {
 			cardObject = GameObject.Instantiate (prefab);
 			cardObject.GetComponent<CardOnClick> ().thisCard = this;
 			cardObject.GetComponent<InHandHover> ().thisCard = this;
+			cardMover = cardObject.GetComponent<CardMover> ();
 			Debug.Log ("card made");
 			
 		}
@@ -178,6 +181,7 @@ public class Card {
 				break;
 			}
 		}
+
 		unitPrefix = null;
 		structurePrefix = null;
 
@@ -206,6 +210,7 @@ public class Card {
 			cardObject = GameObject.Instantiate (prefab);
 			cardObject.GetComponent<CardOnClick> ().thisCard = this;
 			cardObject.GetComponent<InHandHover> ().thisCard = this;
+			cardMover = cardObject.GetComponent<CardMover> ();
 			Debug.Log ("card made");
 
 		}
@@ -365,6 +370,12 @@ public class Card {
 		}
 		set {
 			unitPrefix = value;
+		}
+	}
+
+	public CardMover GetCardMover {
+		get {
+			return cardMover;
 		}
 	}
 }

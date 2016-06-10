@@ -6,7 +6,7 @@ public class CardController : MonoBehaviour {
 	public static  CardController instance;
 	public GameObject cardPrefab;
 	Dictionary<string,Card>cardDictionary;
-
+	public float cardTargetRadius;
 
 	void Awake()
 	{
@@ -18,6 +18,7 @@ public class CardController : MonoBehaviour {
 		}
 
 		cardDictionary = new Dictionary<string, Card> ();
+		cardTargetRadius = 0.01f;
 		CreateCards ();
 
 	}

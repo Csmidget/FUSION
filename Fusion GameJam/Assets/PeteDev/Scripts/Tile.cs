@@ -127,8 +127,40 @@ public class Tile : MonoBehaviour {
 
     void Update()
     {
-        GetClickedTile();
+       // GetClickedTile();
     }
+
+	public void CheckTiles(int distanceAway)
+	{
+		if (distanceAway <= 0)
+			return;
+		else 
+		{
+			distanceAway -= 1;
+			if(!IsOccupied() && !UnitManager.m_instance.validTiles.Contains(this))
+			UnitManager.m_instance.validTiles.Add (this);
+
+			for (int i = 0; i <= 7; i++) 
+			{
+				GetNeighbour (i).GetComponent<Tile>().CheckTiles (distanceAway);
+			}
+		}
+
+	}
+
+	void OnMouseDown()
+	{
+		//if (CardController.instance.cardWasClicked == false) {
+			//Debug.Log("Here");
+			//return m_col2D.gameObject;
+		if (UnitManager.m_instance.m_isInPlacement && UnitManager.m_instance.validTiles.Contains(this)) {
+				//TODO mountains
+				if (!IsOccupied ()) {
+					m_occupant = UnitManager.m_instance.PlaceUnit (this);
+				}
+			}
+
+	}
 
     public GameObject GetClickedTile()
     {
@@ -136,19 +168,16 @@ public class Tile : MonoBehaviour {
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            if (m_col2D.OverlapPoint(mousePosition))
-            {
-                //Debug.Log("Here");
-                //return m_col2D.gameObject;
-				if (UnitManager.m_instance.m_isInPlacement)
-				{
+			if (m_col2D.OverlapPoint (mousePosition) && CardController.instance.cardWasClicked == false) {
+				//Debug.Log("Here");
+				//return m_col2D.gameObject;
+				if (UnitManager.m_instance.m_isInPlacement) {
 					//TODO mountains
-					if (!IsOccupied())
-					{
+					if (!IsOccupied ()) {
 						m_occupant = UnitManager.m_instance.PlaceUnit (this);
 					}
 				}
-            }
+			}
         }
         return null;
     }

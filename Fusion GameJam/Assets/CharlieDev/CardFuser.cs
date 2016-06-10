@@ -21,7 +21,7 @@ public class CardFuser : MonoBehaviour {
 		else if (modifiers.Count == 2)
 			fusedCard = new Card (baseCard, modifiers [0], modifiers [1]);
 		fusedCard.CardObjectTransform.parent = resultLoc.transform;
-		fusedCard.CardObjectTransform.localPosition = Vector3.zero;
+		fusedCard.GetCardMover.targetLoc = resultLoc.transform.position;
 
 		Destroy (baseCard.CardObject);
 		Destroy (modifiers [0].CardObject);

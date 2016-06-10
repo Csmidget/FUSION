@@ -102,6 +102,7 @@ public class Tilemap : MonoBehaviour {
                 m_gridCells[m_gridCells.Count - 1].transform.SetParent(transform);
             }
         }
+		this.GetComponent<CameraPan> ().ResetCam ();
     }
 
     //used to update after a card is placed; checks for new buildings, placeable tiles etc

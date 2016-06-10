@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class UnitManager : MonoBehaviour
 {
 	public GameObject m_unitPrefab;
+	public GameObject m_placementindicatorprefab;
+
 
 	public bool m_isInPlacement;
 	List<Unit> m_units;
-
+	List<GameObject> placementIndicatorList;
+	public List<Tile> validTiles;
 	public static UnitManager m_instance;
 
 	void Awake()
@@ -25,7 +28,7 @@ public class UnitManager : MonoBehaviour
 	void Start ()
 	{
 		m_units = new List<Unit> ();
-		m_isInPlacement = true;
+		m_isInPlacement = false;
 	}
 	
 	// Update is called once per frame
@@ -34,16 +37,36 @@ public class UnitManager : MonoBehaviour
 		
 	}
 
+	public void FindValidTiles()
+	{
+		foreach (Unit u in m_units) {
+			if (u.M_cardStats.GetSubType == SubType.Structure)
+				u.m_tile.CheckTiles(u.M_cardStats.Range);
+		}
+
+		foreach (Tile t in validTiles) {
+			placementIndicatorList.Add((GameObject)Instantiate(m_placementindicatorprefab,t.transform.position,Quaternion.identity));
+		}
+	}
+
 	public Unit PlaceUnit(Tile _tile)
 	{
-		GameObject newUnitGO = (GameObject)Instantiate (m_unitPrefab, _tile.transform.position, Quaternion.identity);
+		GameObject newUnitGO = (GameObject)Instantiate (m_unitPrefab, new Vector3(_tile.transform.position.x,_tile.transform.position.y,-1), Quaternion.identity);
 		Unit newUnit = newUnitGO.GetComponent<Unit> ();
 		newUnitGO.transform.SetParent (_tile.gameObject.transform);
-//		newUnit.M_cardStats = CardFuser.instance.fusedCard;
-//		newUnit.M_cardStats.CardObject.SetActive (false);
-//		CardFuser.instance.fusedCard = null;
-//		this.m_isInPlacement = false;
+		newUnit.M_cardStats = CardFuser.instance.fusedCard;
+		newUnit.M_cardStats.CardObject.SetActive (false);
+		newUnit.m_tile = _tile;
+		CardFuser.instance.fusedCard = null;
+		this.m_isInPlacement = false;
+		HandManager.instance.gameObject.SetActive (true);
 		m_units.Add (newUnit);
+
+		foreach (GameObject go in placementIndicatorList) {
+			Destroy (go);
+		}
+		placementIndicatorList.Clear ();
+		validTiles.Clear ();
 		return newUnit;
 	}
 }

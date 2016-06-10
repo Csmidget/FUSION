@@ -3,10 +3,22 @@ using System.Collections.Generic;
 
 public class CardController : MonoBehaviour {
 
+	public bool cardWasClicked;
 	public static  CardController instance;
 	public GameObject cardPrefab;
 	Dictionary<string,Card>cardDictionary;
 	public float cardTargetRadius;
+
+	void OnMouseDown()
+	{
+		cardWasClicked = false;
+	}
+
+	void OnMouseUp()
+	{
+		Debug.Log ("MOUSE UP");
+		cardWasClicked = false;
+	}
 
 	void Awake()
 	{

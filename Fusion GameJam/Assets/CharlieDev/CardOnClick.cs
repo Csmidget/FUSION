@@ -7,6 +7,8 @@ public class CardOnClick : MonoBehaviour {
 
 	void OnMouseDown()
 	{
+		Debug.Log ("MOUSE DOWN");
+		CardController.instance.cardWasClicked = true;
 		if (thisCard.GetCardType == CardType.Base && thisCard.InHand)
 			CardFuser.instance.ChangeBase (thisCard);
 		else if (thisCard.GetCardType == CardType.Modifier && thisCard.InHand)

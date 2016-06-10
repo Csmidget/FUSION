@@ -13,6 +13,13 @@ public class CameraPan : MonoBehaviour {
         m_camTrans = GetComponent<Transform>();
 		m_camSpeed = 10;
 
+		ResetCam ();
+	}
+
+	public void ResetCam()
+	{
+		m_camTrans.position = new Vector3 (-1, 1.6f, 0);
+
 		//positive cap
 		m_horizPosMax = transform.position.x + 5;
 		m_vertPosMax = transform.position.y + 5;

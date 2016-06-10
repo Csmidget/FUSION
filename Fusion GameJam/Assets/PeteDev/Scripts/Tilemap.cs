@@ -102,8 +102,12 @@ public class Tilemap : MonoBehaviour {
 
 				if (y == m_height / 2) {
 					if (x == 0)
-						UnitManager.m_instance.CreateTownCentre (curCellScript);
+						UnitManager.m_instance.CreateTownCentre (curCellScript,PlayerManager.instance.p1);
+					if (x == m_width - 1) {
+						UnitManager.m_instance.CreateTownCentre (curCellScript,PlayerManager.instance.p2);
 					}
+					}
+
 
 
                 m_gridCells.Add(cur_cell);

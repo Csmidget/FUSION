@@ -6,10 +6,10 @@ public class UnitManager : MonoBehaviour
 {
 	public GameObject m_unitPrefab;
 	public GameObject m_indicatorprefab;
-
+	public GameObject m_enemyIndicatorPrefab;
 
 	public bool m_isInPlacement;
-	List<Unit> m_units;
+	public List<Unit> m_units;
 	List<GameObject> placementIndicatorList;
 	public List<Tile> validTiles;
 	public static UnitManager m_instance;
@@ -24,7 +24,9 @@ public class UnitManager : MonoBehaviour
 		}
 	}
 
-	public Unit CreateTownCentre(Tile homeTile)
+
+
+	public Unit CreateTownCentre(Tile homeTile, Player owner)
 	{
 		GameObject newUnitGO = (GameObject)Instantiate (m_unitPrefab, new Vector3(homeTile.transform.position.x,homeTile.transform.position.y,-1), Quaternion.identity);
 		Unit newUnit = newUnitGO.GetComponent<Unit> ();
@@ -33,7 +35,9 @@ public class UnitManager : MonoBehaviour
 		newUnit.M_cardStats.CardObject.SetActive (false);
 		newUnit.m_tile = homeTile;
 		newUnit.m_tile.m_occupant = newUnit;
+		newUnit.M_cardStats.InHand = false;
 		m_units.Add (newUnit);
+		owner.ownedUnits.Add (newUnit);
 		return newUnit;
 	}
 
@@ -53,7 +57,7 @@ public class UnitManager : MonoBehaviour
 
 	public void FindValidTiles()
 	{
-		foreach (Unit u in m_units) {
+		foreach (Unit u in TurnManager.instance.currPlayer.ownedUnits) {
 			if (u.M_cardStats.GetSubType == SubType.Structure)
 				u.m_tile.CheckTiles(u.M_cardStats.Range);
 		}
@@ -77,7 +81,7 @@ public class UnitManager : MonoBehaviour
 		this.m_isInPlacement = false;
 		HandManager.instance.gameObject.SetActive (true);
 		m_units.Add (newUnit);
-
+		TurnManager.instance.currPlayer.ownedUnits.Add (newUnit);
 		foreach (GameObject go in placementIndicatorList) {
 			Destroy (go);
 		}

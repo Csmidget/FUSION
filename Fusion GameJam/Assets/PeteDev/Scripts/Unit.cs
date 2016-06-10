@@ -10,7 +10,9 @@ public class Unit : MonoBehaviour
 	//public GameObject m_tileRef;
 
 	List<Tile> validTiles;
+	List<Tile> enemyTiles;
 	List<GameObject> travelIndicatorList;
+	List<GameObject> enemyIndicatorList;
 	Card m_cardStats;
 	public Tile m_tile;
 
@@ -19,7 +21,9 @@ public class Unit : MonoBehaviour
 	{
 		//m_cardStats.
 		validTiles = new List<Tile>();
+		enemyTiles = new List<Tile> ();
 		travelIndicatorList = new List<GameObject> ();
+		enemyIndicatorList = new List<GameObject> ();
 	}
 
 	void Update ()
@@ -32,6 +36,8 @@ public class Unit : MonoBehaviour
 		m_cardStats.GetCardMover.targetLoc = cardRevealLoc.position;
 		m_cardStats.CardObject.SetActive (true);
 
+		if(TurnManager.instance.currPlayer.ownedUnits.Contains(this))
+			{
 		//MoveUnit ();
 		CheckTiles();
 		foreach (Tile t in validTiles) {
@@ -40,33 +46,65 @@ public class Unit : MonoBehaviour
 			travelIndicatorList.Add(go);
 			//travelIndicatorList [travelIndicatorList.Count - 1].transform.SetParent (t.transform);
 		}
+		foreach (Tile t in enemyTiles) {
+			enemyIndicatorList.Add((GameObject)Instantiate(UnitManager.m_instance.m_enemyIndicatorPrefab,t.transform.position,Quaternion.identity));
+		}
+			}
+	}
+
+	public void TakeDamage(int damage)
+	{
+		m_cardStats.Defence -= damage;
+		if (m_cardStats.Defence <= 0) {
+			Destroy (m_cardStats.CardObject);
+			Destroy (this.gameObject);
+			PlayerManager.instance.RemoveUnit (this);
+		}
 	}
 
 	void OnMouseUp()
 	{
 		m_cardStats.CardObject.SetActive (false);
+		if (TurnManager.instance.currPlayer.ownedUnits.Contains (this)) {
+			Vector2 mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
-		Vector2 mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			if (validTiles.Count > 0) {
+				for (int i = 0; i < validTiles.Count; i++) {
+					if (validTiles [i].m_col2D.OverlapPoint (mousePosition)) {
+						//move unit
+						Debug.Log ("MOVED");
+						m_tile.m_occupant = null;
+						validTiles [i].m_occupant = this;
+						transform.SetParent (validTiles [i].transform);
+						m_tile = validTiles [i];
+						transform.localPosition = new Vector3 (0, 0, -1);
 
-		if (validTiles.Count > 0) {
-			for (int i = 0; i < validTiles.Count; i++) {
-				if (validTiles [i].m_col2D.OverlapPoint (mousePosition)) {
-					//move unit
-					Debug.Log("MOVED");
-					m_tile.m_occupant = null;
-					validTiles[i].m_occupant = this;
-					transform.SetParent (validTiles [i].transform);
-					m_tile = validTiles [i];
-					transform.localPosition = Vector2.zero;
-
+					}
 				}
 			}
+			if (enemyTiles.Count > 0) 
+			{
+				for (int i = 0; i < enemyTiles.Count; i++) {
+					if (enemyTiles [i].m_col2D.OverlapPoint (mousePosition)) 
+					{
+						enemyTiles [i].m_occupant.TakeDamage(m_cardStats.Attack);
+						break;
+					}
+				}
+			}
+			validTiles.Clear ();
+			enemyTiles.Clear ();
+			foreach (GameObject go in travelIndicatorList) {
+				Destroy (go);
+			}
+
+			travelIndicatorList.Clear ();
+
+			foreach (GameObject go in enemyIndicatorList) {
+				Destroy (go);
+			}
+			enemyIndicatorList.Clear ();
 		}
-		validTiles.Clear ();
-		foreach (GameObject go in travelIndicatorList) {
-			Destroy (go);
-		}
-		travelIndicatorList.Clear ();
 	}
 
 	//pass in range
@@ -75,7 +113,7 @@ public class Unit : MonoBehaviour
 		if (!m_tile.IsOccupied () && !validTiles.Contains (m_tile)) {
 			//validTiles.Add (m_tile);
 		}
-		m_tile.CheckMovement (M_cardStats.Speed,validTiles);
+		m_tile.CheckMovement (M_cardStats.Speed,validTiles,enemyTiles);
 		Debug.Log ("Num valid tiles: " + validTiles.Count);
 	}
 

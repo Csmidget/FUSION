@@ -154,7 +154,7 @@ public class Tile : MonoBehaviour {
 		}
 	}
 
-	public void CheckMovement(int distanceAway, List<Tile> tileList)
+	public void CheckMovement(int distanceAway, List<Tile> tileList,List<Tile>attackList)
 	{
 		if (distanceAway <= 0)
 			return;
@@ -164,11 +164,11 @@ public class Tile : MonoBehaviour {
 
 				Tile tempTile = GetNeighbour (i);
 				if (!tempTile.IsOccupied () && tempTile.GetTileType () != 3) {
-					if(!tileList.Contains (tempTile))
+					if (!tileList.Contains (tempTile))
 						tileList.Add (tempTile);
-					tempTile.CheckMovement (distanceAway - 1, tileList);
-				}
-				//	if(tileList.Contains(tempTile)
+					tempTile.CheckMovement (distanceAway - 1, tileList,attackList);
+				} else if (tempTile.IsOccupied () && TurnManager.instance.enemy.ownedUnits.Contains (tempTile.m_occupant))
+					attackList.Add (tempTile);
 					
 				
 			}

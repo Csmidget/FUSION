@@ -21,6 +21,15 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+	public void RemoveUnit(Unit _unit)
+	{
+		if (p1.ownedUnits.Contains (_unit))
+			p1.ownedUnits.Remove (_unit);
+		if (p2.ownedUnits.Contains (_unit))
+			p2.ownedUnits.Remove (_unit);
+		UnitManager.m_instance.m_units.Remove (_unit);
+	}
+
 	void Start()
 	{
 		p1 = new Player (p1Hand);

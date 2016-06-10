@@ -8,6 +8,7 @@ public class Player {
 
 	public Player(Hand _hand)
 	{
+		ownedUnits = new List<Unit> ();
 		hand = _hand;
 	}
 

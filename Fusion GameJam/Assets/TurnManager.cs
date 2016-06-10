@@ -5,6 +5,7 @@ public class TurnManager : MonoBehaviour {
 
 	public static TurnManager instance;
 	public Player currPlayer;
+	public Player enemy;
 	void Awake()
 	{
 		if (instance == null) {
@@ -41,10 +42,16 @@ public class TurnManager : MonoBehaviour {
 
 	void SwitchPlayer()
 	{
-		if (currPlayer == PlayerManager.instance.p1)
+		if (currPlayer == PlayerManager.instance.p1) 
+		{
 			currPlayer = PlayerManager.instance.p2;
-		else
+			enemy = PlayerManager.instance.p1;
+		} 
+		else 
+		{
 			currPlayer = PlayerManager.instance.p1;
+			enemy = PlayerManager.instance.p2;
+		}
 
 		HandManager.instance.ChangeCurrentHand (currPlayer.hand);
 	}
@@ -52,6 +59,7 @@ public class TurnManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currPlayer = PlayerManager.instance.p1;
+		enemy = PlayerManager.instance.p2;
 		HandManager.instance.ChangeCurrentHand (currPlayer.hand);
 	}
 	

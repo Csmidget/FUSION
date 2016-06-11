@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class TurnManager : MonoBehaviour {
 
 	public static TurnManager instance;
 	public Player currPlayer;
 	public Player enemy;
+	public Text resourceText;
 	void Awake()
 	{
 		if (instance == null) {
@@ -40,6 +42,9 @@ public class TurnManager : MonoBehaviour {
 		SwitchPlayer ();
 		currPlayer.UpdateResources();
 		UnitManager.m_instance.RefreshUnits ();
+
+		resourceText.text = currPlayer.resources.ToString();
+
 	}
 
 	void SwitchPlayer()
@@ -63,6 +68,7 @@ public class TurnManager : MonoBehaviour {
 		currPlayer = PlayerManager.instance.p1;
 		enemy = PlayerManager.instance.p2;
 		HandManager.instance.ChangeCurrentHand (currPlayer.hand);
+		resourceText.text = currPlayer.resources.ToString();
 	}
 	
 	// Update is called once per frame

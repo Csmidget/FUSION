@@ -13,7 +13,6 @@ public class CardFuser : MonoBehaviour {
 	public GameObject modCardLoc;
 	public GameObject resultLoc;
 
-
 	public void EmptyFuser()
 	{
 		RemoveBase ();

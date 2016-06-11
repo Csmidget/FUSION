@@ -7,6 +7,8 @@ public class CardController : MonoBehaviour {
 	public static  CardController instance;
 	public GameObject cardPrefab;
 	Dictionary<string,Card>cardDictionary;
+	List<Card> stoneAgeList;
+	List<Card> ironAgeList;
 	public float cardTargetRadius;
 
 	void OnMouseDown()
@@ -32,6 +34,7 @@ public class CardController : MonoBehaviour {
 		cardDictionary = new Dictionary<string, Card> ();
 		cardTargetRadius = 0.01f;
 		CreateCards ();
+		stoneAgeList = new List<Card> ();
 
 	}
 
@@ -124,6 +127,7 @@ public class CardController : MonoBehaviour {
 				1,
 				0
 			));
+		stoneAgeList.Add (cardDictionary ["CaveMan"]);
 
 		cardDictionary.Add(
 			"Spear",
@@ -144,6 +148,7 @@ public class CardController : MonoBehaviour {
 				1,
 				0
 			));
+		stoneAgeList.Add (cardDictionary ["Spear"]);
 		cardDictionary.Add(
 			"Bow",
 			new Card(
@@ -163,6 +168,7 @@ public class CardController : MonoBehaviour {
 				1,
 				0
 			));
+		stoneAgeList.Add (cardDictionary ["Bow"]);
 		cardDictionary.Add(
 			"Club",
 			new Card(
@@ -183,6 +189,7 @@ public class CardController : MonoBehaviour {
 				1
 
 			));
+		stoneAgeList.Add (cardDictionary ["Club"]);
 		cardDictionary.Add(
 			"Goat",
 			new Card(
@@ -200,6 +207,7 @@ public class CardController : MonoBehaviour {
 				1,
 				0
 			));
+		stoneAgeList.Add (cardDictionary ["Goat"]);
 		cardDictionary.Add(
 			"Hunting Camp",
 			new Card(
@@ -217,6 +225,7 @@ public class CardController : MonoBehaviour {
 				1,
 				1
 			));
+		stoneAgeList.Add (cardDictionary ["Hunting Camp"]);
 		cardDictionary.Add(
 			"Oracles Hut",
 			new Card(
@@ -234,14 +243,15 @@ public class CardController : MonoBehaviour {
 				1,
 				0
 			));
-		cardDictionary.Add(
+		stoneAgeList.Add (cardDictionary ["Oracles Hut"]);
+		cardDictionary.Add (
 			"Town Centre",
-			new Card(
+			new Card (
 				cardPrefab,
 				CardType.Base,
 				SubType.Structure,
 				"Town Centre",
-				SpriteController.instance.GetSprite("Town"),
+				SpriteController.instance.GetSprite ("Town"),
 				"Your base of\noperations",
 				true,
 				3,
@@ -251,7 +261,6 @@ public class CardController : MonoBehaviour {
 				0,
 				4
 			));
-
 		Debug.Log (cardDictionary.Count);	
 	}
 }

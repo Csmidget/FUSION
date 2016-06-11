@@ -14,7 +14,7 @@ public class DropDownMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 	void Start ()
 	{
-		m_startPos = new Vector2 (0, 305);
+		m_startPos = new Vector2 (0, 150);
 		m_endPos = new Vector2 (0, 0);
 		m_rect = GetComponent<RectTransform> ();
 		m_isOver = false;

@@ -393,7 +393,9 @@ public class CardController : MonoBehaviour {
 				2, //gen
 				0 //research
 			));
-		ironAgeList.Add(cardDictionary["Farm"]);	
+		ironAgeList.Add(cardDictionary["Farm"]);
+		middleAgeList.Add (cardDictionary ["Farm"]);
+		modernAgeList.Add (cardDictionary ["Farm"]);
 
 		cardDictionary.Add (
 			"Scout",
@@ -415,5 +417,131 @@ public class CardController : MonoBehaviour {
 			));
 		ironAgeList.Add(cardDictionary["Scout"]);
 
+		cardDictionary.Add (
+			"Sword",
+			new Card (
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Sword",
+				SpriteController.instance.GetSprite ("IronSword"),
+				"+5 attack",
+				true,
+				10, //range
+				5, //attack
+				0, //defence
+				0, //speed
+				4, //cost
+				0, //gen
+				0, //research
+				"Sharp",
+				"Sworded"
+			));
+		ironAgeList.Add(cardDictionary["Sword"]);
+
+		cardDictionary.Add (
+			"Library",
+			new Card (
+				cardPrefab,
+				CardType.Base,
+				SubType.Structure,
+				"Library",
+				SpriteController.instance.GetSprite ("Library"),
+				"Generate more\nresources than a\nHunting Camp",
+				true,
+				0, //range
+				0, //attack
+				8, //defence
+				0, //speed
+				8, //cost
+				0, //gen
+				6 //research
+			));
+		middleAgeList.Add ("Library");
+		modernAgeList.Add ("Library");
+
+		cardDictionary.Add (
+			"Knight",
+			new Card (
+				cardPrefab,
+				CardType.Base,
+				SubType.Unit,
+				"Knight",
+				SpriteController.instance.GetSprite ("Knight"),
+				"A cold\nblooded killer",
+				true,
+				1, //range
+				5, //attack
+				12, //defence
+				0, //speed
+				8, //cost
+				0, //gen
+				0 //research
+			));
+		middleAgeList.Add ("Knight");
+
+		cardDictionary.Add (
+			"Crossbow",
+			new Card (
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Crossbow",
+				SpriteController.instance.GetSprite ("Crossbow"),
+				"+2 Range\n+5 Damage\n-1 Defence",
+				true,
+				2, //range
+				5, //attack
+				-1, //defence
+				0, //speed
+				8, //cost
+				0, //gen
+				0 //research
+			));
+		middleAgeList.Add ("Crossbow");
+
+		cardDictionary.Add (
+			"Improved Wheel",
+			new Card (
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Improved Wheel",
+				SpriteController.instance.GetSprite ("Wheel2"),
+				"+2 Speed",
+				true,
+				0, //range
+				0, //attack
+				0, //defence
+				2, //speed
+				6, //cost
+				0, //gen
+				0, //research
+				"Caravan",
+				"Speedy"
+			));
+		middleAgeList.Add ("Improved Wheel");
+
+		cardDictionary.Add (
+			"WatchTower",
+			new Card (
+				cardPrefab,
+				CardType.Base,
+				SubType.Structure,
+				"WatchTower",
+				SpriteController.instance.GetSprite ("WatchTower"),
+				"A stationary\ndefence",
+				true,
+				3, //range
+				5, //attack
+				15, //defence
+				0, //speed
+				9, //cost
+				0, //gen
+				0 //research
+			));
+		middleAgeList.Add ("WatchTower");
 	}
+
+
 }

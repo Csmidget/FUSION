@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour {
 	public Player enemy;
 	public Text resourceText;
 	public Text researchText;
+	public Text playerNameText;
 	void Awake()
 	{
 		if (instance == null) {
@@ -50,6 +51,7 @@ public class TurnManager : MonoBehaviour {
 
 		resourceText.text = currPlayer.resources.ToString();
 		researchText.text = currPlayer.research.ToString ();
+		playerNameText.text = currPlayer.name;
 	}
 
 	void SwitchPlayer()

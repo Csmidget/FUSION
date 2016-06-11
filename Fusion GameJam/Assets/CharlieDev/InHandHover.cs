@@ -16,7 +16,7 @@ public class InHandHover : MonoBehaviour {
 		if (thisCard.InHand) 
 		{
 			Vector3 newLoc = thisCard.CardObjectTransform.position;
-			newLoc.y += 1.1f;
+			newLoc.y += 1.85f;
 			newLoc.z -= 15;
 			thisCard.GetCardMover.targetLoc = newLoc;
 		}
@@ -27,7 +27,7 @@ public class InHandHover : MonoBehaviour {
 		if(thisCard.InHand)
 		{
 			Vector3 newLoc = thisCard.CardObjectTransform.position;
-			newLoc.y -= 1.1f;
+			newLoc.y -= 1.85f;
 			newLoc.z += 15;
 			thisCard.GetCardMover.targetLoc = newLoc;
 		}

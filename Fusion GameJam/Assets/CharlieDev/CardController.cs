@@ -457,8 +457,8 @@ public class CardController : MonoBehaviour {
 				0, //gen
 				6 //research
 			));
-		middleAgeList.Add ("Library");
-		modernAgeList.Add ("Library");
+		middleAgeList.Add (cardDictionary["Library"]);
+		modernAgeList.Add (cardDictionary["Library"]);
 
 		cardDictionary.Add (
 			"Knight",
@@ -476,9 +476,9 @@ public class CardController : MonoBehaviour {
 				0, //speed
 				8, //cost
 				0, //gen
-				0 //research
+				0//research
 			));
-		middleAgeList.Add ("Knight");
+		middleAgeList.Add (cardDictionary["Knight"]);
 
 		cardDictionary.Add (
 			"Crossbow",
@@ -498,7 +498,7 @@ public class CardController : MonoBehaviour {
 				0, //gen
 				0 //research
 			));
-		middleAgeList.Add ("Crossbow");
+		middleAgeList.Add (cardDictionary["Crossbow"]);
 
 		cardDictionary.Add (
 			"Improved Wheel",
@@ -520,7 +520,7 @@ public class CardController : MonoBehaviour {
 				"Caravan",
 				"Speedy"
 			));
-		middleAgeList.Add ("Improved Wheel");
+		middleAgeList.Add (cardDictionary["Improved Wheel"]);
 
 		cardDictionary.Add (
 			"WatchTower",
@@ -540,7 +540,7 @@ public class CardController : MonoBehaviour {
 				0, //gen
 				0 //research
 			));
-		middleAgeList.Add ("WatchTower");
+		middleAgeList.Add (cardDictionary["WatchTower"]);
 	}
 
 

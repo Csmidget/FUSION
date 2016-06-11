@@ -18,7 +18,7 @@ public class CameraPan : MonoBehaviour {
 
 	public void ResetCam()
 	{
-		m_camTrans.position = new Vector3 (-1, 1.6f, 0);
+		m_camTrans.position = new Vector3 (-0.95f, 2.3f, 0);
 
 		//positive cap
 		m_horizPosMax = transform.position.x + 5;

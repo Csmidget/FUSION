@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour {
 	public Player currPlayer;
 	public Player enemy;
 	public Text resourceText;
+	public Text researchText;
 	void Awake()
 	{
 		if (instance == null) {
@@ -25,26 +26,26 @@ public class TurnManager : MonoBehaviour {
 	public void EndTurn()
 	{
 		CardFuser.instance.EmptyFuser ();
-		for (int i = 0; i < 2; i++) 
-		{
-			if (HandManager.instance.currHand.cards.Count < 10)
-			{
-				if (HandManager.instance.currHand.numBases < 1) 
-					HandManager.instance.PushCard (CardController.instance.GetRandomBase ());				
-				else 
-					if ((HandManager.instance.currHand.numModifiers < 2))
-						HandManager.instance.PushCard (CardController.instance.GetRandomModifier ());					
-				else
-						HandManager.instance.PushCard(CardController.instance.GetRandomCard());
-
-			}
-		}
 		SwitchPlayer ();
 		currPlayer.UpdateResources();
+		if (currPlayer.research > 20 && currPlayer.age == "Stone Age")
+			currPlayer.age = "Iron Age";
+
 		UnitManager.m_instance.RefreshUnits ();
 
-		resourceText.text = currPlayer.resources.ToString();
+		while (HandManager.instance.currHand.cards.Count < 10) {
+			
+			if (HandManager.instance.currHand.numBases < 1) 
+				HandManager.instance.PushCard (CardController.instance.GetRandomBase ());				
+			else 
+				if ((HandManager.instance.currHand.numModifiers < 2))
+					HandManager.instance.PushCard (CardController.instance.GetRandomModifier ());					
+				else
+					HandManager.instance.PushCard(CardController.instance.GetRandomCard());			
+		}
 
+		resourceText.text = currPlayer.resources.ToString();
+		researchText.text = currPlayer.research.ToString ();
 	}
 
 	void SwitchPlayer()

@@ -11,6 +11,8 @@ public class Player {
 
 	public Player(Hand _hand,int startResource)
 	{
+		age = "Stone Age";
+		research = 0;
 		resources = startResource;
 		ownedUnits = new List<Unit> ();
 		hand = _hand;
@@ -21,6 +23,7 @@ public class Player {
 		foreach (Unit u in ownedUnits) 
 		{
 			resources += u.M_cardStats.ResourceGen;
+			research += u.M_cardStats.ResearchGen;
 		}
 	}
 

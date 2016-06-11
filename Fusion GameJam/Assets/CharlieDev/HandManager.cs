@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class HandManager : MonoBehaviour {
 
-	public GameObject thisObject;
+	//public GameObject thisObject;
 	public static HandManager instance;
 	public GameObject cardPrefab;
 	public Hand currHand;
@@ -43,10 +43,13 @@ public class HandManager : MonoBehaviour {
 	{
 		currHand.cards = new List<Card>();
 		AddCard ("CaveMan");
+		AddCard ("CaveMan");
 		AddCard ("Spear");
 		AddCard ("Goat");
 		AddCard ("Oracles Hut");
 		AddCard ("Hunting Camp");
+		AddCard ("Club");
+		AddCard ("Club");
 		AddCard ("Club");
 		AddCard ("Bow");
 		SortHand ();

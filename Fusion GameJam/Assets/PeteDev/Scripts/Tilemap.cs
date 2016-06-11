@@ -34,7 +34,7 @@ public class Tilemap : MonoBehaviour {
 
 	void Start ()
     {
-        m_height = 16;
+        m_height = 13;
         m_width = 30;
         m_tileOffset = 0.5f;
 

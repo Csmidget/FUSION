@@ -33,49 +33,53 @@ public class CardController : MonoBehaviour {
 
 		cardDictionary = new Dictionary<string, Card> ();
 		cardTargetRadius = 0.01f;
-		CreateCards ();
+		ironAgeList = new List<Card> ();
 		stoneAgeList = new List<Card> ();
-
+		CreateCards ();
 	}
 
 	public Card GetRandomCard()
 	{
-		int randNum = Random.Range (0, cardDictionary.Count);
-		List<Card> cardList = new List<Card> ();
-		foreach (Card c in cardDictionary.Values) {
-			cardList.Add (c);
-		}
+		List<Card> cardList = GetValidList ();
+		int randNum = Random.Range (0, cardList.Count);
 		return cardList [randNum].MakeCopy();
 	}
 
 	public Card GetRandomModifier()
 	{
-		List<Card> cardList = new List<Card> ();
-		foreach (Card c in cardDictionary.Values) {
-			cardList.Add (c);
-		}
-		int randNum = Random.Range (0, cardDictionary.Count);
+		List<Card> cardList = GetValidList ();
+
+		int randNum = Random.Range (0, cardList.Count);
 		while (cardList [randNum].GetCardType != CardType.Modifier) {
-			randNum = Random.Range (0, cardDictionary.Count);
+			randNum = Random.Range (0, cardList.Count);
 		}
 
 		return cardList [randNum].MakeCopy();
 	}
+
+
 
 	public Card GetRandomBase()
 	{
-		List<Card> cardList = new List<Card> ();
-		foreach (Card c in cardDictionary.Values) {
-			cardList.Add (c);
-		}
-		int randNum = Random.Range (0, cardDictionary.Count);
+		List<Card> cardList = GetValidList ();
+
+		int randNum = Random.Range (0, cardList.Count);
 		while (cardList [randNum].GetCardType != CardType.Base) {
-			randNum = Random.Range (0, cardDictionary.Count);
+			randNum = Random.Range (0, cardList.Count);
 		}
 
 		return cardList [randNum].MakeCopy();
 	}
 
+	public List<Card> GetValidList()
+	{
+		if (TurnManager.instance.currPlayer.age == "Stone Age")
+			return stoneAgeList;
+		else if (TurnManager.instance.currPlayer.age == "Iron Age")
+			return ironAgeList;
+		else
+			return stoneAgeList;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -124,7 +128,8 @@ public class CardController : MonoBehaviour {
 				1,
 				2,
 				2,
-				1,
+				2,
+				0,
 				0
 			));
 		stoneAgeList.Add (cardDictionary ["CaveMan"]);
@@ -139,16 +144,18 @@ public class CardController : MonoBehaviour {
 				SpriteController.instance.GetSprite("Spear"),
 				"+1 Range \n+1 Damage\n+1 Defence",
 				true,
-				"Spiky",
-				"Speary",
 				1,
 				1,
 				1,
 				0,
 				1,
-				0
+				0,
+				0,
+				"Spiky",
+				"Speary"
 			));
 		stoneAgeList.Add (cardDictionary ["Spear"]);
+
 		cardDictionary.Add(
 			"Bow",
 			new Card(
@@ -159,16 +166,18 @@ public class CardController : MonoBehaviour {
 				SpriteController.instance.GetSprite("Bow"),
 				"+1 Range \n+2 Damage",
 				true,
-				"Archery",
-				"Archer",
 				1,
 				2,
 				0,
 				0,
 				1,
-				0
+				0,
+				0,
+				"Archery",
+				"Archer"
 			));
 		stoneAgeList.Add (cardDictionary ["Bow"]);
+
 		cardDictionary.Add(
 			"Club",
 			new Card(
@@ -179,17 +188,19 @@ public class CardController : MonoBehaviour {
 				SpriteController.instance.GetSprite("Club"),
 				" \n+3 Damage",
 				true,
-				"Defended",
-				"Clubby",
 				0,
 				3,
 				0,
 				0,
 				1,
-				1
+				1,
+				0,
+				"Defended",
+				"Clubby"
 
 			));
 		stoneAgeList.Add (cardDictionary ["Club"]);
+
 		cardDictionary.Add(
 			"Goat",
 			new Card(
@@ -204,10 +215,12 @@ public class CardController : MonoBehaviour {
 				0,
 				3,
 				3,
-				1,
+				2,
+				0,
 				0
 			));
 		stoneAgeList.Add (cardDictionary ["Goat"]);
+
 		cardDictionary.Add(
 			"Hunting Camp",
 			new Card(
@@ -223,9 +236,11 @@ public class CardController : MonoBehaviour {
 				3,
 				0,
 				1,
-				1
+				1,
+				0
 			));
 		stoneAgeList.Add (cardDictionary ["Hunting Camp"]);
+
 		cardDictionary.Add(
 			"Oracles Hut",
 			new Card(
@@ -241,9 +256,11 @@ public class CardController : MonoBehaviour {
 				3,
 				0,
 				1,
-				0
+				0,
+				2
 			));
 		stoneAgeList.Add (cardDictionary ["Oracles Hut"]);
+
 		cardDictionary.Add (
 			"Town Centre",
 			new Card (
@@ -259,8 +276,52 @@ public class CardController : MonoBehaviour {
 				30,
 				0,
 				0,
+				4,
 				4
 			));
+
+		cardDictionary.Add (
+			"Wheel",
+			new Card (
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Wheel",
+				SpriteController.instance.GetSprite ("PrimitiveWheel"),
+				"+1 speed",
+				true,
+				0, //range
+				0, //attack
+				0, //defence
+				1, //speed
+				2, //cost
+				0, //resource gen
+				0, //research gen
+				"Mobile",
+				"Wheeled"
+			));
+		ironAgeList.Add(cardDictionary["Wheel"]);
+
+		cardDictionary.Add (
+			"Peasant",
+			new Card (
+				cardPrefab,
+				CardType.Base,
+				SubType.Unit,
+				"Peasant",
+				SpriteController.instance.GetSprite ("Peasant"),
+				"A step up\nfrom cave man",
+				true,
+				2, //range
+				2, //attack
+				4, //defence
+				2, //speed
+				4, //cost
+				0, //gen
+				0
+			));
+		ironAgeList.Add(cardDictionary["Peasant"]);	
+
 		Debug.Log (cardDictionary.Count);	
 	}
 }

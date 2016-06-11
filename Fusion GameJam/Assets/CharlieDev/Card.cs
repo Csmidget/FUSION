@@ -25,6 +25,7 @@ public class Card {
 	protected int speed;
 	protected int resourceCost;
 	protected int resourceGen;
+	protected int researchGen;
 
 	string structurePrefix;
 	string unitPrefix;
@@ -42,6 +43,7 @@ public class Card {
 		speed 	= 	baseCard.Speed;
 		resourceCost = baseCard.ResourceCost;
 		resourceGen = baseCard.ResourceGen;
+		researchGen = baseCard.researchGen;
 		prefabCard = false;
 		string prefix1;
 		string prefix2;
@@ -107,7 +109,7 @@ public class Card {
 
 
 
-	public Card(GameObject _prefab,CardType _type,SubType _subType, string _name, Sprite _cardImage, string _cardText,bool _prefabCard,int _range,int _attack,int _defence,int _speed,int _resourceCost, int _resourceGen)
+	public Card(GameObject _prefab,CardType _type,SubType _subType, string _name, Sprite _cardImage, string _cardText,bool _prefabCard,int _range,int _attack,int _defence,int _speed,int _resourceCost, int _resourceGen,int _researchGen)
 	{
 		inHand = true;
 		inFuser = false;
@@ -124,6 +126,7 @@ public class Card {
 		speed = _speed;
 		resourceCost = _resourceCost;
 		resourceGen = _resourceGen;
+		researchGen = _researchGen;
 		if (prefabCard)
 			cardObject = prefab;
 		else {
@@ -145,7 +148,7 @@ public class Card {
 
 	}
 
-	public Card (GameObject _prefab, CardType _type, SubType _subType, string _name, Sprite _cardImage, string _cardText, bool _prefabCard,string _structurePrefix,string _unitPrefix, int _range,int _attack,int _defence,int _speed,int _resourceCost, int _resourceGen) 
+	public Card (GameObject _prefab, CardType _type, SubType _subType, string _name, Sprite _cardImage, string _cardText, bool _prefabCard, int _range,int _attack,int _defence,int _speed,int _resourceCost, int _resourceGen,int _researchGen,string _structurePrefix,string _unitPrefix) 
 	{
 		Debug.Log ("SPESHUL CONSTRUCTOR");
 		inHand = true;
@@ -163,6 +166,7 @@ public class Card {
 		speed = _speed;
 		resourceCost = _resourceCost;
 		resourceGen = _resourceGen;
+		researchGen = _researchGen;
 		if (prefabCard)
 			cardObject = prefab;
 		else {
@@ -187,7 +191,7 @@ public class Card {
 	}
 	public Card MakeCopy()
 	{
-		Card newCard = new Card (prefab, cardType, subType, name, cardImage, cardText, false, range, attack, defence, speed,resourceCost,resourceGen);
+		Card newCard = new Card (prefab, cardType, subType, name, cardImage, cardText, false, range, attack, defence, speed,resourceCost,resourceGen,researchGen);
 
 		if (unitPrefix != null) {
 			newCard.UnitPrefix = unitPrefix;
@@ -222,6 +226,9 @@ public class Card {
 				break;
 			case "attack":
 				c.GetComponent<TextMesh> ().text = attack.ToString ();
+				break;
+			case "costText":
+				c.GetComponent<TextMesh> ().text = resourceCost.ToString ();
 				break;
 			}
 		}
@@ -375,6 +382,15 @@ public class Card {
 		}
 		set {
 			resourceGen = value;
+		}
+	}
+
+	public int ResearchGen {
+		get {
+			return researchGen;
+		}
+		set {
+			researchGen = value;
 		}
 	}
 }

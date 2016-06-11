@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
 	//needs to edit the stats of the basecard when an event happens, such as health when attacked
 
 	//public GameObject m_tileRef;
+	public Player owner;
 	public bool hasActed;
 	List<Tile> validTiles;
 	List<Tile> enemyTiles;
@@ -15,7 +16,7 @@ public class Unit : MonoBehaviour
 	List<GameObject> enemyIndicatorList;
 	Card m_cardStats;
 	public Tile m_tile;
-
+	SpriteRenderer sr;
 
 	void Start ()
 	{
@@ -25,6 +26,15 @@ public class Unit : MonoBehaviour
 		travelIndicatorList = new List<GameObject> ();
 		enemyIndicatorList = new List<GameObject> ();
 		hasActed = true;
+
+		sr = this.GetComponent<SpriteRenderer> ();
+
+		if (m_cardStats.GetSubType == SubType.Structure)
+			sr.sprite = SpriteController.instance.GetSprite ("CastleIcon");
+		else
+			sr.sprite = SpriteController.instance.GetSprite ("InfantryIcon");
+
+
 	}
 
 	void Update ()
@@ -41,6 +51,7 @@ public class Unit : MonoBehaviour
 			{
 		//MoveUnit ();
 		CheckTiles();
+		RangeCheck ();
 		foreach (Tile t in validTiles) {
 			GameObject go = (GameObject)Instantiate (UnitManager.m_instance.m_indicatorprefab, t.transform.position, Quaternion.identity);
 			go.transform.parent = t.transform;
@@ -112,11 +123,12 @@ public class Unit : MonoBehaviour
 	//pass in range
 	public void CheckTiles()
 	{
-		if (!m_tile.IsOccupied () && !validTiles.Contains (m_tile)) {
-			//validTiles.Add (m_tile);
-		}
-		m_tile.CheckMovement (M_cardStats.Speed,validTiles,enemyTiles);
-		Debug.Log ("Num valid tiles: " + validTiles.Count);
+		m_tile.CheckMovement (M_cardStats.Speed,validTiles);
+	}
+
+	public void RangeCheck()
+	{
+		m_tile.AttackCheck(M_cardStats.Range,enemyTiles);
 	}
 
 	public Card M_cardStats {

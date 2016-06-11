@@ -30,15 +30,19 @@ public class TurnManager : MonoBehaviour {
 		currPlayer.UpdateResources();
 		if (currPlayer.research > 20 && currPlayer.age == "Stone Age")
 			currPlayer.age = "Iron Age";
+		else if (currPlayer.research > 100 && currPlayer.age == "Iron Age")
+			currPlayer.age = "Middle Ages";
+		else if (currPlayer.research > 500 && currPlayer.age == "Middle Ages")
+			currPlayer.age = "Modern Age"; 
 
 		UnitManager.m_instance.RefreshUnits ();
 
 		while (HandManager.instance.currHand.cards.Count < 10) {
 			
-			if (HandManager.instance.currHand.numBases < 1) 
+			if (HandManager.instance.currHand.numBases < 4) 
 				HandManager.instance.PushCard (CardController.instance.GetRandomBase ());				
 			else 
-				if ((HandManager.instance.currHand.numModifiers < 2))
+				if ((HandManager.instance.currHand.numModifiers < 5))
 					HandManager.instance.PushCard (CardController.instance.GetRandomModifier ());					
 				else
 					HandManager.instance.PushCard(CardController.instance.GetRandomCard());			

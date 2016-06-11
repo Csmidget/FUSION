@@ -32,8 +32,8 @@ public class PlayerManager : MonoBehaviour {
 
 	void Start()
 	{
-		p1 = new Player (p1Hand,5);
-		p2 = new Player (p2Hand,1);
+		p1 = new Player (p1Hand,5,"Player 1");
+		p2 = new Player (p2Hand,1,"Player 2");
 
 		HandManager.instance.currHand = p1.hand;
 		HandManager.instance.SetupHand ();

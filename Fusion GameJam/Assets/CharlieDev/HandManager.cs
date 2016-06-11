@@ -48,10 +48,10 @@ public class HandManager : MonoBehaviour {
 		AddCard ("Goat");
 		AddCard ("Oracles Hut");
 		AddCard ("Hunting Camp");
+		AddCard ("Hunting Camp");
 		AddCard ("Club");
 		AddCard ("Club");
-		AddCard ("Club");
-		AddCard ("Bow");
+		AddCard ("Sling");
 		SortHand ();
 	}
 

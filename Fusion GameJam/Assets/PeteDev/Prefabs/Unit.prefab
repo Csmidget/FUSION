@@ -56,6 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRevealLoc: {fileID: 460722, guid: 0aa9a8fe128e0324d825ea5b01d71a53, type: 2}
+  hasActed: 0
   m_tile: {fileID: 0}
 --- !u!212 &21292658
 SpriteRenderer:
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c2a208801850a8a4b9372e740c090dc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41ee5ce107e943e47bcbd92412177775, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

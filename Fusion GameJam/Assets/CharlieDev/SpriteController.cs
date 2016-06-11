@@ -22,10 +22,18 @@ public class SpriteController : MonoBehaviour {
 
 		Sprite[] sprites = Resources.LoadAll<Sprite> ("CardPics");
 
+
 		foreach (Sprite s in sprites) {
 			Debug.Log (s.name);
 			spriteDictionary.Add (s.name, s);
 		}	 
+
+		sprites = Resources.LoadAll<Sprite> ("Tiles");
+		foreach (Sprite s in sprites) {
+			Debug.Log (s.name);
+			spriteDictionary.Add (s.name, s);
+		}
+
 	}
 
 

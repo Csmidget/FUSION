@@ -9,6 +9,8 @@ public class CardController : MonoBehaviour {
 	Dictionary<string,Card>cardDictionary;
 	List<Card> stoneAgeList;
 	List<Card> ironAgeList;
+	List<Card> middleAgeList;
+	List<Card> modernAgeList;
 	public float cardTargetRadius;
 
 	void OnMouseDown()
@@ -34,6 +36,8 @@ public class CardController : MonoBehaviour {
 		cardDictionary = new Dictionary<string, Card> ();
 		cardTargetRadius = 0.01f;
 		ironAgeList = new List<Card> ();
+		middleAgeList = new List<Card> ();
+		modernAgeList = new List<Card> ();
 		stoneAgeList = new List<Card> ();
 		CreateCards ();
 	}
@@ -77,6 +81,10 @@ public class CardController : MonoBehaviour {
 			return stoneAgeList;
 		else if (TurnManager.instance.currPlayer.age == "Iron Age")
 			return ironAgeList;
+		else if (TurnManager.instance.currPlayer.age == "Middle Ages")
+			return middleAgeList;
+		else if (TurnManager.instance.currPlayer.age == "Modern Age")
+			return modernAgeList;
 		else
 			return stoneAgeList;
 	}
@@ -157,13 +165,13 @@ public class CardController : MonoBehaviour {
 		stoneAgeList.Add (cardDictionary ["Spear"]);
 
 		cardDictionary.Add(
-			"Bow",
+			"Sling",
 			new Card(
 				cardPrefab,
 				CardType.Modifier,
 				SubType.Tool,
-				"Bow",
-				SpriteController.instance.GetSprite("Bow"),
+				"Sling",
+				SpriteController.instance.GetSprite("Sling"),
 				"+1 Range \n+2 Damage",
 				true,
 				1,
@@ -173,10 +181,10 @@ public class CardController : MonoBehaviour {
 				1,
 				0,
 				0,
-				"Archery",
-				"Archer"
+				"Slinger",
+				"Slinger"
 			));
-		stoneAgeList.Add (cardDictionary ["Bow"]);
+		stoneAgeList.Add (cardDictionary ["Sling"]);
 
 		cardDictionary.Add(
 			"Club",
@@ -260,6 +268,7 @@ public class CardController : MonoBehaviour {
 				2
 			));
 		stoneAgeList.Add (cardDictionary ["Oracles Hut"]);
+		ironAgeList.Add (cardDictionary ["Oracles Hut"]);
 
 		cardDictionary.Add (
 			"Town Centre",
@@ -272,7 +281,7 @@ public class CardController : MonoBehaviour {
 				"Your base of\noperations",
 				true,
 				3,
-				0,
+				2,
 				30,
 				0,
 				0,
@@ -313,15 +322,98 @@ public class CardController : MonoBehaviour {
 				"A step up\nfrom cave man",
 				true,
 				2, //range
-				2, //attack
+				3, //attack
 				4, //defence
 				2, //speed
 				4, //cost
 				0, //gen
-				0
+				0 //research
 			));
 		ironAgeList.Add(cardDictionary["Peasant"]);	
 
-		Debug.Log (cardDictionary.Count);	
+		cardDictionary.Add (
+			"Bow",
+			new Card (
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Tool,
+				"Bow",
+				SpriteController.instance.GetSprite ("Bow"),
+				"+1 Range\n+3 Attack",
+				true,
+				1, //range
+				3, //attack
+				0, //defence
+				0, //speed
+				2, //cost
+				0, //gen
+				0, //research
+				"Archery",
+				"Archer"
+			));
+		ironAgeList.Add(cardDictionary["Bow"]);	
+
+		cardDictionary.Add (
+			"Mushrooms",
+			new Card (
+				cardPrefab,
+				CardType.Modifier,
+				SubType.Material,
+				"Mushrooms",
+				SpriteController.instance.GetSprite ("Mushrooms"),
+				"+1 Attack\n-1 Defence\n +1 Speed",
+				true,
+				0, //range
+				1, //attack
+				-1, //defence
+				1, //speed
+				0, //cost
+				0, //gen
+				0, //research
+				"Swampy",
+				"High"
+			));
+		ironAgeList.Add(cardDictionary["Mushrooms"]);	
+
+		cardDictionary.Add (
+			"Farm",
+			new Card (
+				cardPrefab,
+				CardType.Base,
+				SubType.Structure,
+				"Farm",
+				SpriteController.instance.GetSprite ("Farm"),
+				"Generate more\nresources than a\nHunting Camp",
+				true,
+				1, //range
+				0, //attack
+				6, //defence
+				0, //speed
+				3, //cost
+				2, //gen
+				0 //research
+			));
+		ironAgeList.Add(cardDictionary["Farm"]);	
+
+		cardDictionary.Add (
+			"Scout",
+			new Card (
+				cardPrefab,
+				CardType.Base,
+				SubType.Unit,
+				"Scout",
+				SpriteController.instance.GetSprite ("Malitian"),
+				"Runs fast",
+				true,
+				1, //range
+				1, //attack
+				8, //defence
+				4, //speed
+				4, //cost
+				0, //gen
+				0 //research
+			));
+		ironAgeList.Add(cardDictionary["Scout"]);
+
 	}
 }

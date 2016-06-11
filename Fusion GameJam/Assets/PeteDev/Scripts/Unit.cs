@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
 	List<GameObject> enemyIndicatorList;
 	Card m_cardStats;
 	public Tile m_tile;
-	SpriteRenderer sr;
+	public SpriteRenderer sr;
 
 	void Start ()
 	{
@@ -27,14 +27,23 @@ public class Unit : MonoBehaviour
 		enemyIndicatorList = new List<GameObject> ();
 		hasActed = true;
 
-		sr = this.GetComponent<SpriteRenderer> ();
 
-		if (m_cardStats.GetSubType == SubType.Structure)
-			sr.sprite = SpriteController.instance.GetSprite ("CastleIcon");
-		else
-			sr.sprite = SpriteController.instance.GetSprite ("InfantryIcon");
+		if (sr == null) {
+			sr = this.GetComponent<SpriteRenderer> ();
 
 
+			if (TurnManager.instance.currPlayer.name == "Player 1") {
+				if (m_cardStats.GetSubType == SubType.Structure)
+					sr.sprite = SpriteController.instance.GetSprite ("CastlePieceBlack");
+				else
+					sr.sprite = SpriteController.instance.GetSprite ("InfantryPieceBlack");
+			} else {
+				if (m_cardStats.GetSubType == SubType.Structure)
+					sr.sprite = SpriteController.instance.GetSprite ("CastlePieceRed");
+				else
+					sr.sprite = SpriteController.instance.GetSprite ("InfantryPieceRed");
+			}
+		}
 	}
 
 	void Update ()

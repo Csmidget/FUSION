@@ -467,7 +467,7 @@ public class CardController : MonoBehaviour {
 				CardType.Base,
 				SubType.Unit,
 				"Knight",
-				SpriteController.instance.GetSprite ("Knight"),
+				SpriteController.instance.GetSprite ("MedievalKnight"),
 				"A cold\nblooded killer",
 				true,
 				1, //range

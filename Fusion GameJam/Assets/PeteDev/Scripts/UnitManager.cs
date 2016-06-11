@@ -47,6 +47,10 @@ public class UnitManager : MonoBehaviour
 		newUnit.M_cardStats.InHand = false;
 		m_units.Add (newUnit);
 		owner.ownedUnits.Add (newUnit);
+		if (owner.name == "Player 2") {
+			newUnit.sr = newUnit.GetComponent<SpriteRenderer> ();
+			newUnit.sr.sprite = SpriteController.instance.GetSprite ("CastlePieceRed");
+		}
 		return newUnit;
 	}
 

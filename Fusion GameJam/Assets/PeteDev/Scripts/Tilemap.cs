@@ -104,7 +104,7 @@ public class Tilemap : MonoBehaviour {
 					if (x == 0)
 						UnitManager.m_instance.CreateTownCentre (curCellScript,PlayerManager.instance.p1);
 					if (x == m_width - 1) {
-						UnitManager.m_instance.CreateTownCentre (curCellScript,PlayerManager.instance.p2);
+						Unit u = UnitManager.m_instance.CreateTownCentre (curCellScript,PlayerManager.instance.p2);
 					}
 					}
 

@@ -6,6 +6,6 @@ Awarded 1st place.
 
 Created by:
 
-Charles Smith
-Pieter Taylor
+Charles Smith,
+Pieter Taylor,
 Shpetim Tahiri
